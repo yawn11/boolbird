@@ -30,6 +30,8 @@ with col1 :
     st.date_input('공사 시작일을 선택해주세요 : ')
 with col2 :
     st.date_input('공사 종료일을 선택해주세요 : ')
+with col3 :
+    ' '
 
 #시설물종류 (건축~)
 with col1 :
