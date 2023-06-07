@@ -31,7 +31,7 @@ with col1 :
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요 : ')
 
-col1 = st.columns([1])
+col1 = st.columns()
 with col1 :
     st.write("전체 공사 기간은 ", day1, "부터 ", day2, "까지입니다.")
 
