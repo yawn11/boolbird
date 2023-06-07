@@ -25,8 +25,10 @@ st.write('아래 정보를 입력해주세요')
 
 
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
-st.date_input('공사 시작일을 선택해주세요 : ')
-st.date_input('공사 종료일을 선택해주세요 : ')
+with col1 :
+    st.date_input('공사 시작일을 선택해주세요 : ')
+with col2 :
+    st.date_input('공사 종료일을 선택해주세요 : ')
 
 #시설물종류 (건축~)
 lang2 = ['건축', '건축1', '건축2', '건축3']
