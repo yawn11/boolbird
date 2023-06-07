@@ -25,13 +25,11 @@ st.write('아래 정보를 입력해주세요')
 
 
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
-col1,col2,col3 = st.columns([1,1,1])
+col1,col2 = st.columns([1,1])
 with col1 :
-    day1 = st.date_input('공사 시작일을 선택해주세요 : ')
+    st.date_input('공사 시작일을 선택해주세요 : ')
 with col2 :
-    day2 = st.date_input('공사 종료일을 선택해주세요 : ')
-with col3 :
-    st.write(day1," ~ ",day2)
+    st.date_input('공사 종료일을 선택해주세요 : ')
 
 #시설물종류 (건축~)
 with col1 :
@@ -45,10 +43,6 @@ with col2 :
     selected_lang3 = st.selectbox('공종을 선택해주세요 : ',lang3)
     #selected_lang3 = st.selectbox('공종을 선택해주세요:', job_types = preprocess_data())
 
-#공정률 (~%)
-with col3 :
-    st.text_input('공정률을 입력해주세요 : ')
-
 #설계안전성검토 (대상,비대상)
 with col1 :
     selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
@@ -60,9 +54,13 @@ with col2 :
 #공사비 (~원)
 with col1 :
     st.text_input('공사비를 입력해주세요 : ')
+    
+#공정률 (~%)
+with col2 :
+    st.text_input('공정률을 입력해주세요 : ')
 
 #작업자수 (~명)
-with col2 :
+with col1 :
     st.text_input('작업자수를 입력해주세요 : ')
 
 #통계페이지 이동하는 버튼
