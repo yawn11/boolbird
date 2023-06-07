@@ -3,23 +3,24 @@ import streamlit as st
 st.title("건설 안전사고 위험도 예측 서비스")
 st.text("텍스트를 입력하세요") 
 st.write('아무거나 쓰세요')
-"""
+
+
 # user input 받기 
-st.text_input('사용자 입력을 받아보세요: ')
+#st.text_input('사용자 입력을 받아보세요: ')
 
-lang = ['py', 'java', 'c', 'go']
-selected_lang = st.selectbox('언어선택하쇼',lang)
-st.write('니가고른언어는 {}임니다'.format(selected_lang))
+#lang = ['py', 'java', 'c', 'go']
+#selected_lang = st.selectbox('언어선택하쇼',lang)
+#st.write('니가고른언어는 {}임니다'.format(selected_lang))
 
 
-selected_item = st.radio("Radio Part", ("A", "B", "C"))
-if selected_item == "A":
-    st.write("A!!")
-elif selected_item == "B":
-    st.write("B!")
-elif selected_item == "C":
-    st.write("C!")
-"""
+#selected_item = st.radio("Radio Part", ("A", "B", "C"))
+#if selected_item == "A":
+#    st.write("A!!")
+#elif selected_item == "B":
+#    st.write("B!")
+#elif selected_item == "C":
+#    st.write("C!")
+
 
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 #시설물종류 (건축~)
