@@ -72,4 +72,5 @@ with col1 :
     st.text_input('작업자수를 입력해주세요 : ')
 
 #통계페이지 이동하는 버튼
+st.write(' ')
 st.button('위험도 예측 결과 확인')
