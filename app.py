@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 
+import os
+print(os.getcwd())
+
+
 st.title("건설 안전사고 위험도 예측 서비스")
 #st.text("텍스트를 입력하세요") 
 st.write('아래 정보를 입력해주세요')
