@@ -22,10 +22,9 @@ st.write('아래 정보를 입력해주세요')
 #elif selected_item == "C":
 #    st.write("C!")
 
-
 def preprocess_data():
     # CSV 파일 경로
-    csv_file_path = '/Users/yawnpurple/코딩/bool/accident-data-main 2/output-v2.csv'
+    csv_file_path = 'output/output-v2.csv'
 
     # CSV 파일 로드
     df = pd.read_csv(csv_file_path)
