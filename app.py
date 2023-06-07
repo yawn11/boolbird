@@ -29,6 +29,7 @@ selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
 lang3 = ['철근콘크리트', '철근콘크리트1', '철근콘크리트2', '철근콘크리트3']
 selected_lang3 = st.selectbox('공종을 선택해주세요 : ',lang3)
 #설계안전성검토 (대상,비대상)
+selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
 #시설관리공사 (공공,민간)
 #공정률 (~%)
 st.text_input('공정률을 입력해주세요 : ')
