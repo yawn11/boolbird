@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+import os
+print(os.getcwd())
+
 import streamlit as st
 import pandas as pd
 
-import os
-print(os.getcwd())
 
 
 st.title("건설 안전사고 위험도 예측 서비스")
