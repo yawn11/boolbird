@@ -27,9 +27,11 @@ st.write('아래 정보를 입력해주세요\n')
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,col2 = st.columns([1,1])
 with col1 :
-    st.date_input('공사 시작일을 선택해주세요 : ')
+    day1 = st.date_input('공사 시작일을 선택해주세요 : ')
 with col2 :
-    st.date_input('공사 종료일을 선택해주세요 : ')
+    day2 = st.date_input('공사 종료일을 선택해주세요 : ')
+
+st.write("전체 공사 기간은 ", day1, "부터 ", day2, "까지입니다.")
 
 #시설물종류 (건축~)
 with col1 :
