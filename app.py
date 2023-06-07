@@ -6,13 +6,7 @@ st.text("텍스트를 입력하세요")
 st.write('아무거나 쓰세요')
 # user input 받기 
 st.text_input('사용자 입력을 받아보세요: ')
-occupation = st.selectbox(“직군을 선택하세요.”,
- [“Backend Developer”,
- “Frontend Developer”,
- “ML Engineer”,
- “Data Engineer”,
- “Database Administrator”,
- “Data Scientist”,
- “Data Analyst”,
- “Security Engineer”])
-st.write(“당신의 직군은 “, occupation, “ 입니다.”)
+
+lang = ['py', 'java', 'c', 'go']
+selected_lang = st.selectbox('언어선택하쇼',lang)
+st.write('니가고른언어는 {}임니다'.format(selected_lang))
