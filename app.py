@@ -1,7 +1,6 @@
 import streamlit as st
 
 st.title("건설 안전사고 위험도 예측 서비스")
-st.text("텍스트를 입력하세요")
 st.text("텍스트를 입력하세요") 
 st.write('아무거나 쓰세요')
 # user input 받기 
@@ -31,6 +30,7 @@ selected_lang3 = st.selectbox('공종을 선택해주세요 : ',lang3)
 #설계안전성검토 (대상,비대상)
 selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
 #시설관리공사 (공공,민간)
+selected_item3 = st.radio("시설관리공사를 선택해주세요 : ", ("공공", "민간"))
 #공정률 (~%)
 st.text_input('공정률을 입력해주세요 : ')
 #공사비 (~원)
