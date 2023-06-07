@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 sys.path.append('..')
 
@@ -15,6 +17,21 @@ from dateutil import parser
 
 def preprocess_data():
     df = pd.read_csv('../data/output-v2.csv')
+    
+    unique_job = df['공종'].unique()
+    unique_building = df['시설물 종류'].unique()
+
+    print("Unique values in '공종':")
+    print(unique_job)
+
+    print("Unique values in '시설물 종류':")
+    print(unique_building)
+
+    
+    
+    
+    
+    
     #필요 없는 특성 제거
 
     allColumns = df.columns
