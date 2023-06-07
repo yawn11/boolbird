@@ -49,6 +49,7 @@ with col5 :
     st.text_input('공정률을 입력해주세요 : ')
 
 #설계안전성검토 (대상,비대상)
+col1,col2 = st.columns([1,1])
 with col1 :
     selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
 
