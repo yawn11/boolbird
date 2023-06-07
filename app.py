@@ -72,5 +72,5 @@ with col1 :
 
 #통계페이지 이동하는 버튼
 with col2 :
-    '\n\n'
+    '\n\n\n\n\n\n'
     st.button('위험도 예측 결과 확인')
