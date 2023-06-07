@@ -8,8 +8,6 @@ def main() :
     st.write('아무거나 쓰세요')
     # user input 받기 
     st.text_input('사용자 입력을 받아보세요: ')
-
-    st.sidebar 
     
     
 if __name__ == '__main__' :
