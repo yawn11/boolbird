@@ -32,16 +32,21 @@ with col2 :
     st.date_input('공사 종료일을 선택해주세요 : ')
 
 #시설물종류 (건축~)
-with col1 :
+col3,col4,col5 = st.columns([1,1,1])
+with col3 :
     lang2 = ['건축', '건축1', '건축2', '건축3']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
     #selected_lang2 = st.selectbox('시설물종류를 선택해주세요:', facility_types = preprocess_data())
 
 #공종 (철근콘크리트~)
-with col2 :
+with col4 :
     lang3 = ['철근콘크리트', '철근콘크리트1', '철근콘크리트2', '철근콘크리트3']
     selected_lang3 = st.selectbox('공종을 선택해주세요 : ',lang3)
     #selected_lang3 = st.selectbox('공종을 선택해주세요:', job_types = preprocess_data())
+
+#공정률 (~%)
+with col5 :
+    st.text_input('공정률을 입력해주세요 : ')
 
 #설계안전성검토 (대상,비대상)
 with col1 :
@@ -50,10 +55,6 @@ with col1 :
 #시설관리공사 (공공,민간)
 with col2 :
     selected_item3 = st.radio("시설관리공사를 선택해주세요 : ", ("공공", "민간"))
-
-#공정률 (~%)
-with col1 :
-    st.text_input('공정률을 입력해주세요 : ')
 
 #공사비 (~원)
 with col2 :
