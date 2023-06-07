@@ -26,20 +26,20 @@ st.title(" ")
 
 
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
-col1,empty2,col2 = st.columns([1, 0.075, 1])
+col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     day1 = st.date_input('공사 시작일을 선택해주세요 : ')
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요 : ')
 
-col1,col2 = st.columns([2, 0.075])
+col1,col2 = st.columns([2, 0.03])
 with col1 :
     st.write("전체 공사 기간은 ", day1, "부터 ", day2, "까지입니다.")
 with col2 :
     ' '
 
 #시설물종류 (건축~)
-col1,empty2,col2 = st.columns([1, 0.075, 1])
+col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '건축1', '건축2', '건축3']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
