@@ -54,10 +54,12 @@ with col2 :
 #설계안전성검토 (대상,비대상)
 with col1 :
     selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 #시설관리공사 (공공,민간)
 with col2 :
     selected_item3 = st.radio("시설관리공사를 선택해주세요 : ", ("공공", "민간"))
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 #공사비 (~원)
 with col1 :
