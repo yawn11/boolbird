@@ -38,7 +38,7 @@ with col2 :
     ' '
 
 #시설물종류 (건축~)
-col1,col2 = st.columns([1,1])
+col1,empty,col2 = st.columns([1,0.5,1])
 with col1 :
     lang2 = ['건축', '건축1', '건축2', '건축3']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
