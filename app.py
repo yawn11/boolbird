@@ -42,7 +42,7 @@ with col2 :
 #시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
-    lang2 = ['건축', '건축1', '건축2', '건축3']
+    lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
     #selected_lang2 = st.selectbox('시설물종류를 선택해주세요:', facility_types)
 
@@ -77,3 +77,7 @@ with col1 :
 #통계페이지 이동하는 버튼
 st.write(' ')
 st.button('위험도 예측 결과 확인')
+
+
+
+#오늘
