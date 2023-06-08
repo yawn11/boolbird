@@ -15,8 +15,9 @@ bar = st.progress(m)
 bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
 # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-redred = 30
-red_bar_style = 'background-color: #FF0000; height: 100%; width: {redred}%;'
+redred = 0.3  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
+red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
 
 # 바의 HTML 코드
 bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
@@ -36,6 +37,7 @@ with col2 :
 
 #------------아래는 입력 (총 10개)---------
 
+list = 
 df = pd.DataFrame()
 
 #(1) 공사기간 (yy.mm.dd ~ yy.mm.dd)
