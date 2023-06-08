@@ -13,7 +13,7 @@ with col2 :
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 col1.markdown(
-    f'<style>div.stButton > button {{background-color: blue;}}</style>',
+    f'<style>div.stColumn:nth-of-type(1) {{background-color: blue;}}</style>',
     unsafe_allow_html=True
 )
 with col1 :
