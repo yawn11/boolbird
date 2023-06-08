@@ -39,8 +39,8 @@ with col2 :
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
-    lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
-    selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
+    facility = ['건축', '산업환경설비', '조경', '토목', '기타']
+    selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
 #if (selected_lang2 == '건축'): 
     
 #(4) 공정률 (~%)
@@ -99,7 +99,7 @@ bar = st.progress(m)
 bar_color = "#FF0000"  # 빨간색으로 변경
 
 # 바의 HTML 코드
-bar = f'<div style="background-color: {bar_color}; height: 20px; width: 70%;"></div>'
+bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
 
 # Streamlit에 표시
 st.markdown(bar, unsafe_allow_html=True)
