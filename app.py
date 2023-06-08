@@ -30,9 +30,9 @@ df = df.set_index("class")
 #(1) 공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
-    start_day = st.date_input('공사 시작일을 선택해주세요')
+    start_day = st.date_input('공사 시작일을 선택해주세요.')
 with col2 :
-    end_day = st.date_input('공사 종료일을 선택해주세요')
+    end_day = st.date_input('공사 종료일을 선택해주세요.')
 
 #(2) 공사기간 계산
 start_day = parser.parse(str(start_day))
@@ -45,13 +45,13 @@ df.loc['공사기간'] = dur
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     facility = ['건축', '산업환경설비', '조경', '토목', '기타']
-    selected_facility = st.selectbox('시설물종류를 선택해주세요',facility)
+    selected_facility = st.selectbox('시설물종류를 선택해주세요.',facility)
 string = '시설물 종류_'
 df.loc[string + selected_facility] = 1.0
     
 #(4) 공정률 (~%)
 with col2 :
-    percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
+    percent = st.text_input('공정률을 입력해주세요.  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
 if percent:
     df.loc['공정률'] = float(percent)
 else:
@@ -67,27 +67,27 @@ with col2:
     
     filtered_category = [item for item in category if search_term.lower() in item.lower()]
 with col1:
-    selected_category = st.selectbox('공종을 선택해주세요', filtered_category)
+    selected_category = st.selectbox('공종을 선택해주세요.', filtered_category)
 string = '공종_'
 df.loc[string + selected_category] = 1.0
 
 #(7) 설계안전성검토 (대상,비대상)
 with col1 :
-    selected_item2 = st.radio("설계안전성검토를 선택해주세요", ("대상", "비대상"))
+    selected_item2 = st.radio("설계안전성검토를 선택해주세요.", ("대상", "비대상"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 if (selected_item2 == "대상"):
     df['설계안전성검토'] = 1.0
 
 #(8) 시설관리공사 (공공,민간)
 with col2 :
-    selected_item3 = st.radio("시설관리공사를 선택해주세요", ("공공", "민간"))
+    selected_item3 = st.radio("시설관리공사를 선택해주세요.", ("공공", "민간"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 if (selected_item3 == "공공"):
     df['시설관리공사'] = 1.0
 
 #(9) 공사비 (~원)
 with col1 :
-    cost = st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
+    cost = st.text_input('공사비를 입력해주세요. (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
 #df['공사비'] = float(cost)
 if cost:
     df['공사비'] = float(cost)
@@ -96,7 +96,7 @@ else:
 
 #(10) 작업자수 (~명)
 with col2 :
-    person = st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
+    person = st.text_input('작업자수를 입력해주세요.  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
 #df['작업자수'] = float(person)
 if person:
     df['작업자수'] = float(person)
