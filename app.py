@@ -117,7 +117,7 @@ def extract_yyyymmdd(s):
 dt_now = datetime.datetime.now()
 #date = dt_now.date #2020-09-02
 date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
-date = extract_yyyymmdd(date)
+date = extract_yyyymmdd(date) #뭐지 왜 안될까
 
 # 기상청 데이터 연결
 import requests
@@ -176,6 +176,9 @@ df.loc['습도'] = get_humid(date)
 
 #------------아래는 출력-----------------
 
+st.write(df)
+
+
 #통계페이지 이동하는 버튼
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인')
@@ -184,45 +187,30 @@ if button_clicked:
     bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     if True:
         st.title(f"위험도는 \' {danger[0]} \' 입니다.")
-        
-        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     
         color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
         color_width = int(color * 100)  # 색 부분의 너비 계산
         color_bar_style = f'background-color: #DD5E65; height: 100%; width: {color_width}%;'
-        
-        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-        #st.markdown(bar, unsafe_allow_html=True)
     
     elif False:
         st.title(f"위험도는 \' {danger[1]} \' 입니다.")
-        
-        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     
         color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
         color_width = int(color * 100)  # 색 부분의 너비 계산
         color_bar_style = f'background-color: #F0BD6A; height: 100%; width: {color_width}%;'
-        
-        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-        #st.markdown(bar, unsafe_allow_html=True)
     
     elif False:
         st.title(f"위험도는 \' {danger[2]} \' 입니다.")
-        
-        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     
         color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
         color_width = int(color * 100)  # 색 부분의 너비 계산
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
-        
-        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-        #st.markdown(bar, unsafe_allow_html=True)
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
     st.write('상세 위험도는 아래와 같습니다.')
     st.markdown(bar, unsafe_allow_html=True)
     
-    st.write(df)
+    #st.write(df)
 
 
 
