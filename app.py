@@ -57,7 +57,7 @@ with col1:
     
     filtered_lang3 = [item for item in lang3 if search_term.lower() in item.lower()]
 with col2:
-    selected_lang3 = st.selectbox('공종을 선택해주세요:', filtered_lang3)
+    selected_lang3 = st.selectbox('공종 검색어가 포함된 항목을 선택해주세요:', filtered_lang3)
 
 #설계안전성검토 (대상,비대상)
 with col1 :
