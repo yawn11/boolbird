@@ -216,4 +216,7 @@ if button_clicked:
     st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
     st.markdown(bar, unsafe_allow_html=True)
     
-    st.write(df)
+    if st.checkbox('입력값 확인하기') :
+        st.write(df)
+    else :
+        st.text('입력값 숨기기')
