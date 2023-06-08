@@ -77,7 +77,7 @@ with col1 :
 
 #작업자수 (~명)
 with col2 :
-    st.text_input('작업자수를 입력해주세요  (단위 : 명), value="", placeholder="예시: 1,000명이라면 '1000'이라고 입력해주세요")
+    st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="예시: 1,000명이라면 '1000'이라고 입력해주세요")
 
 #통계페이지 이동하는 버튼
 st.write(' ')
