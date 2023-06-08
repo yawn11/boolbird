@@ -36,7 +36,7 @@ if (selected_lang2 == '건축'):
 #공정률 (~%)
 with col2 :
     percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
-percent = float(percent)    
+#percent = float(percent)    
 
 # 공종 (철근콘크리트~)
 with col2:
