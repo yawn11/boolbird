@@ -61,7 +61,10 @@ else:
 #(4) 공정률 (~%)
 with col2 :
     percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
-df.loc['공정률'] = float(percent)
+if percent:
+    df.loc['공정률'] = float(percent)
+else:
+    df.loc['공정률'] = None
 
 #(6),(5) 공종 (철근콘크리트~)
 with col2:
