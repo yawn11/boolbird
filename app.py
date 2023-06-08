@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
+import re
+from dateutil import parser
 
 col1,empty2,col2 = st.columns([1, 0.3, 8.7])
+col1.markdown(
+    f'<style>div.stButton > button {{background-color: blue;}}</style>',
+    unsafe_allow_html=True
+)
 with col1 :
     st.image("phoenix.png", width=80)
 with col2 :
@@ -14,14 +20,19 @@ with col1 :
     day1 = st.date_input('공사 시작일을 선택해주세요')
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요')
+
 #공사기간 계산
-parser.parse(start_date_str)
+day1 = parser.parse(day1)
+day2 = parser.parse(day2)
+dur = (day2 - day1).days
+if (dur <= 0): st.write("공사기간 입력 오류")
 
 #시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
+    
     
 #공정률 (~%)
 with col2 :
