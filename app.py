@@ -150,6 +150,9 @@ root = tree.getroot()
 items = root.findall('.//item')
 
 found = False
+
+key = ''  # key 변수 초기화
+
 for item in items:
     category = item.find('category').text
     if category == 'T1H':  # 기온(category=T1H) 데이터 추출
