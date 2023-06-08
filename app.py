@@ -217,7 +217,3 @@ if button_clicked:
     st.markdown(bar, unsafe_allow_html=True)
     
     st.write(df)
-    if st.checkbox('입력값 확인하기') :
-        st.write('짜잔')
-    else :
-        st.checkbox('이것도 아닌데..')
