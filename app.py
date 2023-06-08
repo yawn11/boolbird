@@ -38,7 +38,7 @@ with col2 :
 start_day = parser.parse(str(start_day))
 end_day = parser.parse(str(end_day))
 dur = (end_day - start_day).days
-if (dur <= 0): st.error("공사기간 입력 오류")
+if (dur <= 0): st.error("공사기간 입력 오류입니다. 입력한 공사 시작일과 종료일을 다시 한 번 확인해주세요.")
 df.loc['공사기간'] = dur
 
 #(3) 시설물종류 (건축~)
