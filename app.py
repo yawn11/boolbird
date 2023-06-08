@@ -55,14 +55,8 @@ with col2 :
 #통계페이지 이동하는 버튼
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인')
-
-# 버튼이 클릭되었을 때 메시지 표시
 if button_clicked:
     st.write("짜잔")
-
-
-
-#오늘
 
 def preprocess_data():
     # CSV 파일 경로
