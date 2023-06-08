@@ -8,26 +8,6 @@ with col1 :
 with col2 :
     st.title("건설 안전사고 위험도 예측 서비스\n")
 
-#def preprocess_data():
-    # CSV 파일 경로
-    #csv_file_path = 'output/output-v2.csv'
-
-    # CSV 파일 로드
-    #df = pd.read_csv(csv_file_path)
-
-    # 시설물 종류 추출
-    #facility_types = df['시설물 종류'].unique().tolist()
-
-    # 공종 추출
-    #job_types = df['공종'].unique().tolist()
-
-    #return facility_types, job_types
-
-
-# 데이터 전처리 함수 호출하여 시설물 종류와 공종 추출
-#facility_types, job_types = preprocess_data()
-
-
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
@@ -35,18 +15,11 @@ with col1 :
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요')
 
-#col1,col2 = st.columns([2, 0.03])
-#with col1 :
-    #st.write("전체 공사 기간은 ", day1, "부터 ", day2, "까지입니다.")
-#with col2 :
-    #' '
-
 #시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
-    #selected_lang2 = st.selectbox('시설물종류를 선택해주세요:', facility_types)
     
 #공정률 (~%)
 with col2 :
@@ -86,3 +59,10 @@ st.button('위험도 예측 결과 확인')
 
 
 #오늘
+
+def preprocess_data():
+    # CSV 파일 경로
+    csv_file_path = 'output/output-v2.csv'
+
+    # CSV 파일 로드
+    df = pd.read_csv(csv_file_path)
