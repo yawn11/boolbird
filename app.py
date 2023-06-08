@@ -26,6 +26,8 @@ start_day = parser.parse(start_day)
 end_day = parser.parse(end_day)
 dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
+else:
+    df['공사기간'] = float(dur)
 
 #시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
@@ -33,6 +35,7 @@ with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
 if (selected_lang2 == '건축'): 
+    ' '
     
 #공정률 (~%)
 with col2 :
