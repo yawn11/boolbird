@@ -102,37 +102,85 @@ if person:
 else:
     df.loc['작업자수'] = None
 
+#(11) 날씨 -> 입력
+weather = ["강설","강풍","강우","안개","맑음","흐림"]
+
+#(12, 13) 기온, 습도 -> 따로 입력X
+import requests
+import json
+
+serviceKey = "Fr9wFe/lwpNUNCFDyb4c74NiogVnhbSPOn4VixALepK1XaBViv2tOKOjrbTArthJoToqj0KuLzn4w4TVj/AqJQ=="
+url = 'http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList'
+params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '10', 'dataType' : 'JSON', 'dataCd' : 'ASOS', 'dateCd' : 'DAY', 'startDt' : '20100101', 'endDt' : '20100601', 'stnIds' : '108' }
+
+def get_temper(yyyymmdd):
+    params['startDt'] = yyyymmdd 
+    params['endDt'] = yyyymmdd+1
+    response = requests.get(url, params=params)
+    jsondata = json.loads(response.content)
+
+    for item in jsondata['response']['body']['items']['item']:
+        return float(item['avgTa'])  
+    
+def get_humid(yyyymmdd):
+    params['startDt'] = yyyymmdd 
+    params['endDt'] = yyyymmdd+1
+    response = requests.get(url, params=params)
+    jsondata = json.loads(response.content)
+
+    for item in jsondata['response']['body']['items']['item']:
+        return float(item['avgRhm'])  
+    
+df.loc['기온'] = 
+
 #------------아래는 출력-----------------
 
+st.write(df)
 
 #통계페이지 이동하는 버튼
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인')
 danger = ["하", "중", "상"]
 if button_clicked:
+    bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     if True:
         st.title(f"위험도는 \' {danger[0]} \' 입니다.")
-    #elif 조건식2:
-        #st.title(f"위험도는 \' {danger[1]} \' 입니다.")
-    #elif 조건식3:
-        #st.title(f"위험도는 \' {danger[2]} \' 입니다.")
+        
+        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     
+        color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+        color_width = int(color * 100)  # 색 부분의 너비 계산
+        color_bar_style = f'background-color: #DD5E65; height: 100%; width: {color_width}%;'
+        
+        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
+        #st.markdown(bar, unsafe_allow_html=True)
     
-    # Add a placeholder 진행 상황 바
-    # 전체 바의 스타일과 크기를 설정하는 CSS 스타일
-    bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
-
-    # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-    redred = 0.7  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-    red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
-    red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
-
-    # 바의 HTML 코드
-    bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
-
-    # Streamlit에 표시
+    elif False:
+        st.title(f"위험도는 \' {danger[1]} \' 입니다.")
+        
+        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
+    
+        color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+        color_width = int(color * 100)  # 색 부분의 너비 계산
+        color_bar_style = f'background-color: #F0BD6A; height: 100%; width: {color_width}%;'
+        
+        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
+        #st.markdown(bar, unsafe_allow_html=True)
+    
+    elif False:
+        st.title(f"위험도는 \' {danger[2]} \' 입니다.")
+        
+        #bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
+    
+        color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+        color_width = int(color * 100)  # 색 부분의 너비 계산
+        color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
+        
+        #bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
+        #st.markdown(bar, unsafe_allow_html=True)
+    
+    bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
     st.markdown(bar, unsafe_allow_html=True)
-
 
 
 
