@@ -119,7 +119,7 @@ else:
 # date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
 # date = extract_yyyymmdd(date) 
 date = 20230607
-time = 700 #0700
+time = 700 #0700 이거 10진수에서는 앞에 0 쓰면 안된대서 700으로 바꿨어
 
 # 기상청 데이터 연결 "기상청_단기예보 ((구)_동네예보) 조회서비스"
 import requests
@@ -154,9 +154,9 @@ def get_temper(date, time):
     
     
 # 습도 불러오기
-def get_humid(yyyymmdd):
-    params['startDt'] = str(yyyymmdd)
-    params['endDt'] = str(yyyymmdd + 1)
+def get_humid(date, time):
+    params['base_date'] = str(date)
+    params['base_time'] = str(time)
     response = requests.get(url, params=params)
     #jsondata = json.loads(response.content)
     try:
@@ -165,22 +165,22 @@ def get_humid(yyyymmdd):
         return None
 
     #for item in jsondata['response']['body']['items']['item']:
-        #return float(item['avgRhm'])  
+        #return float(item['avgTa'])
     
     if 'response' in jsondata and 'body' in jsondata['response'] and 'items' in jsondata['response']['body']:
         items = jsondata['response']['body']['items']
         if 'item' in items:
             item = items['item']
             if isinstance(item, list):
-                return float(item[0]['avgRhm'])
+                return float(item[0]['REH'])
             elif isinstance(item, dict):
-                return float(item['avgRhm'])
+                return float(item['REH'])
 
     return None
     
     
-df.loc['기온'] = get_temper(date)
-df.loc['습도'] = get_humid(date)
+df.loc['기온'] = get_temper(date, time)
+df.loc['습도'] = get_humid(date, time)
 
 #------------아래는 출력-----------------
 
@@ -211,20 +211,7 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-    now_color = int(color*100)
-    st.write('상세 위험도는 \' ', now_color, ' % \' 입니다.')
+    st.write('상세 위험도는 \' ', color*100, ' % \' 입니다.')
     st.markdown(bar, unsafe_allow_html=True)
     
-    st.write(df) # <-??이거 데이터프레임 처리 잘되었나 화인용 아하
-
-
-
-
-
-
-#def preprocess_data():
-    # CSV 파일 경로
-    #csv_file_path = 'output/output-v2.csv'
-
-    # CSV 파일 로드
-    #df = pd.read_csv(csv_file_path)
+    st.write(df)
