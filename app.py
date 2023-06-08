@@ -88,7 +88,11 @@ if (selected_item3 == "공공"):
 #(9) 공사비 (~원)
 with col1 :
     cost = st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
-df['공사비'] = float(cost)
+#df['공사비'] = float(cost)
+if cost:
+    df['공사비'] = float(cost)
+else:
+    df['공정률'] = None
 
 #(10) 작업자수 (~명)
 with col2 :
