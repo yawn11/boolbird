@@ -219,3 +219,5 @@ if button_clicked:
     st.write(df)
     if st.checkbox('입력값 확인하기') :
         st.write('짜잔')
+    else :
+        st.write('이게 아닌데...')
