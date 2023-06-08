@@ -95,23 +95,6 @@ if button_clicked:
 m=0.5
 bar = st.progress(m)
 
-
-# Custom CSS styles
-custom_style = """
-<style>
-    .custom-progress-bar .stProgress > div {
-        background-color: red !important;
-    }
-</style>
-"""
-
-# 진행 상태 바 생성
-n = 0.5
-bar = st.progress(n)
-
-# 커스텀 CSS 적용
-st.markdown(custom_style, unsafe_allow_html=True)
-
 i=0.3
 bar = st.empty()
 bar.progress(i)
