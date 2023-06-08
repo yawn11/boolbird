@@ -12,7 +12,6 @@ with col2 :
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     day1 = st.date_input('공사 시작일을 선택해주세요')
-    st.write(day1)
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요')
 
