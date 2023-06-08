@@ -90,8 +90,49 @@ if button_clicked:
         #st.write(f"{danger[2]}")
     # Add a placeholder 진행 상황 바
 
-n=0.5
-bar = st.progress(n)
+#n=0.5
+#bar = st.progress(n)
+
+# CSS 스타일
+custom_style = """
+<style>
+    .custom-progress-bar {
+        background-color: red;
+        height: 25px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+    .custom-progress-bar-inner {
+        background-color: blue;
+        height: 100%;
+        width: 50%;
+        border-radius: 5px;
+        transition: width 0.3s ease-in-out;
+    }
+</style>
+"""
+
+# CSS 스타일 적용
+st.markdown(custom_style, unsafe_allow_html=True)
+
+# 초기 진행 상태
+n = 0.5
+
+# 진행 상태 바 표시
+bar_container = st.markdown(
+    f'<div class="custom-progress-bar"><div class="custom-progress-bar-inner" style="width: {n*100}%"></div></div>',
+    unsafe_allow_html=True
+)
+
+
+
+
+
+
+
+
+
 
 #def preprocess_data():
     # CSV 파일 경로
