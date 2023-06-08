@@ -61,6 +61,7 @@ else:
 #(4) 공정률 (~%)
 with col2 :
     percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
+    if (percent <= 0): st.error("공사기간 입력 오류입니다. 입력한 공사 시작일과 종료일을 다시 한 번 확인해주세요.")
 df.loc['공정률'] = float(percent)
 
 #(6),(5) 공종 (철근콘크리트~)
