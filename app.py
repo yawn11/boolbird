@@ -50,7 +50,7 @@ with col1 :
     
 #공정률 (~%)
 with col2 :
-    st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="예시: 65%라면 '65'라고 입력해주세요")
+    st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
     
 # 공종 (철근콘크리트~)
 with col2:
@@ -73,11 +73,11 @@ with col2 :
 
 #공사비 (~원)
 with col1 :
-    st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="예시: 10억 원이라면 '10'이라고 입력해주세요")
+    st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
 
 #작업자수 (~명)
 with col2 :
-    st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="예시: 1,000명이라면 '1000'이라고 입력해주세요")
+    st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
 
 #통계페이지 이동하는 버튼
 st.write(' ')
