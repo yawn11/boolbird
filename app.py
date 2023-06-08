@@ -109,15 +109,17 @@ else:
 #(12, 13) 기온, 습도 -> 따로 입력X
 
 # 현재 시간
-import datetime
-def extract_yyyymmdd(s):
-    date1 = s.split()[0]
-    list =  date1.split('-')
-    return int(list[0]+list[1]+list[2])
-dt_now = datetime.datetime.now()
-#date = dt_now.date #2020-09-02
-date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
-date = extract_yyyymmdd(date) #뭐지 왜 안될까
+# import datetime
+# def extract_yyyymmdd(s):
+#     date1 = s.split()[0]
+#     list =  date1.split('-')
+#     return int(list[0]+list[1]+list[2])
+# dt_now = datetime.datetime.now()
+# #date = dt_now.date #2020-09-02
+# date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02 근데 하나씩하면 되는뎅ㅇ
+# date = extract_yyyymmdd(date) #뭐지 왜 안될까그래서 여기문제 같아 머야한번에 주석어케함 고수다 cmd + /여태 한개씩 누르고 있었따ㅋㅋㅋㅋ앗..ㅜㅜㅜ이거 돌려 볼까
+#좋앙 근데 잘돌아가든디/??
+date = 20230607
 
 # 기상청 데이터 연결
 import requests
