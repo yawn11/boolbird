@@ -97,7 +97,11 @@ else:
 #(10) 작업자수 (~명)
 with col2 :
     person = st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
-df['작업자수'] = float(person)
+#df['작업자수'] = float(person)
+if person:
+    df['작업자수'] = float(person)
+else:
+    df['작업자수'] = None
 
 #------------아래는 출력-----------------
 
