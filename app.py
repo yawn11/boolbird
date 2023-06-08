@@ -50,7 +50,7 @@ with col1 :
     
 #공정률 (~%)
 with col2 :
-    st.text_input('공정률을 입력해주세요  (단위 : %)')
+    st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="예시: 65%라면 '65'라고 입력해주세요")
     
 # 공종 (철근콘크리트~)
 with col2:
