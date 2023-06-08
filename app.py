@@ -176,12 +176,8 @@ df.loc['습도'] = get_humid(date)
 
 #------------아래는 출력-----------------
 
-st.write(df)
-
-
-#통계페이지 이동하는 버튼
 st.write(' ')
-button_clicked = st.button('위험도 예측 결과 확인')
+button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 이동하는 버튼
 danger = ["하", "중", "상"]
 if button_clicked:
     bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
@@ -210,7 +206,7 @@ if button_clicked:
     st.write('상세 위험도는 아래와 같습니다.')
     st.markdown(bar, unsafe_allow_html=True)
     
-    #st.write(df)
+    st.write(df) # <-??
 
 
 
