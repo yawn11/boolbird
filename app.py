@@ -11,14 +11,21 @@ from dateutil import parser
 m=0.5
 bar = st.progress(m)
 
-# 바의 색상을 설정하는 CSS 스타일
-bar_color = "#FF0000"  # 빨간색으로 변경
+# 전체 바의 스타일과 크기를 설정하는 CSS 스타일
+bar_style = 'background-color: #808080; height: 20px; width: 100%;'
+
+# 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
+red_bar_style = 'background-color: #FF0000; height: 100%; width: 70%;'
+
+# 회색 부분의 스타일과 크기를 설정하는 CSS 스타일
+gray_bar_style = 'background-color: #C0C0C0; height: 100%; width: 30%;'
 
 # 바의 HTML 코드
-bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
+bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div><div style="{gray_bar_style}"></div></div>'
 
 # Streamlit에 표시
 st.markdown(bar, unsafe_allow_html=True)
+
 
 
 #제목
@@ -55,13 +62,16 @@ with col1 :
 if (selected_facility == '건축'): 
     facility_row = ['시설물 종류_건축', 1.0]
 elif (selected_facility == '산업환경설비'):
-    
-
+    facility_row = ['시설물 종류_산업환경설비', 1.0]
+elif (selected_facility == '조경'):
+    facility_row = ['시설물 종류_조경', 1.0]
+else:
+    facility_row = ['시설물 종류_토목', 1.0]
     
 #(4) 공정률 (~%)
 with col2 :
     percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
-percent = float(percent)    
+percent_row = ['공정률', float(percent)]
 
 #(6),(5) 공종 (철근콘크리트~)
 with col2:
