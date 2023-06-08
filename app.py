@@ -200,11 +200,11 @@ if button_clicked:
     bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
     color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
     color_width = int(color * 100)  # 색 부분의 너비 계산
-    if True:
+    if False:
         st.title(f"위험도는 \' {danger[0]} \' 입니다.")
         color_bar_style = f'background-color: #DD5E65; height: 100%; width: {color_width}%;'
     
-    elif False:
+    elif True:
         st.title(f"위험도는 \' {danger[1]} \' 입니다.")
         color_bar_style = f'background-color: #F0BD6A; height: 100%; width: {color_width}%;'
     
@@ -213,7 +213,6 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-    new_color = int(color*100)
     st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
     st.markdown(bar, unsafe_allow_html=True)
     
