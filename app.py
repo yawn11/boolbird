@@ -133,8 +133,21 @@ def get_temper(yyyymmdd):
     response = requests.get(url, params=params)
     jsondata = json.loads(response.content)
 
-    for item in jsondata['response']['body']['items']['item']:
-        return float(item['avgTa'])  
+    #for item in jsondata['response']['body']['items']['item']:
+        #return float(item['avgTa'])
+    
+    if 'response' in jsondata and 'body' in jsondata['response'] and 'items' in jsondata['response']['body']:
+        items = jsondata['response']['body']['items']
+        if 'item' in items:
+            item = items['item']
+            if isinstance(item, list):
+                return float(item[0]['avgTa'])
+            elif isinstance(item, dict):
+                return float(item['avgTa'])
+
+    return None
+    
+    
 # 습도 불러오기
 def get_humid(yyyymmdd):
     params['startDt'] = yyyymmdd 
@@ -143,8 +156,20 @@ def get_humid(yyyymmdd):
     response = requests.get(url, params=params)
     jsondata = json.loads(response.content)
 
-    for item in jsondata['response']['body']['items']['item']:
-        return float(item['avgRhm'])  
+    #for item in jsondata['response']['body']['items']['item']:
+        #return float(item['avgRhm'])  
+    
+    if 'response' in jsondata and 'body' in jsondata['response'] and 'items' in jsondata['response']['body']:
+        items = jsondata['response']['body']['items']
+        if 'item' in items:
+            item = items['item']
+            if isinstance(item, list):
+                return float(item[0]['avgRhm'])
+            elif isinstance(item, dict):
+                return float(item['avgRhm'])
+
+    return None
+    
     
 df.loc['기온'] = get_temper(date)
 df.loc['습도'] = get_humid(date)
