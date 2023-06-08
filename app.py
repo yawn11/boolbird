@@ -12,7 +12,7 @@ m=0.5
 bar = st.progress(m)
 
 # 바의 색상을 설정하는 CSS 스타일
-bar_color = "#FFFFFF"  # 빨간색으로 변경
+bar_color = "#EA3323"  # 빨간색으로 변경
 
 # 바의 HTML 코드
 #bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
@@ -52,7 +52,7 @@ col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     facility = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
-if (selected_facility == '건축'): facility_row = 
+if (selected_facility == '건축'): facility_row = ['시설물 종류_건축', ]
     
 #(4) 공정률 (~%)
 with col2 :
