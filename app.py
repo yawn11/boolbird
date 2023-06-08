@@ -5,10 +5,6 @@ import re
 from dateutil import parser
 
 col1,empty2,col2 = st.columns([1, 0.3, 8.7])
-col1.markdown(
-    f'<style>div.stButton > button {{background-color: blue;}}</style>',
-    unsafe_allow_html=True
-)
 with col1 :
     st.image("phoenix.png", width=80)
 with col2 :
@@ -16,15 +12,19 @@ with col2 :
 
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
+col1.markdown(
+    f'<style>div.stButton > button {{background-color: blue;}}</style>',
+    unsafe_allow_html=True
+)
 with col1 :
-    day1 = st.date_input('공사 시작일을 선택해주세요')
+    start_day = st.date_input('공사 시작일을 선택해주세요')
 with col2 :
-    day2 = st.date_input('공사 종료일을 선택해주세요')
+    end_day = st.date_input('공사 종료일을 선택해주세요')
 
 #공사기간 계산
-day1 = parser.parse(day1)
-day2 = parser.parse(day2)
-dur = (day2 - day1).days
+start_day = parser.parse(start_day)
+end_day = parser.parse(end_day)
+dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
 
 #시설물종류 (건축~)
@@ -32,12 +32,13 @@ col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
-    
+if (selected_lang2 == '건축'): 
     
 #공정률 (~%)
 with col2 :
-    st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
-    
+    percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
+percent = float(percent)    
+
 # 공종 (철근콘크리트~)
 with col2:
     lang3 = ['가설공사', '강구조물공사', '건축 토공사', '건축물 부대공사', '관공사', '관공사 부대공사', '교량공사', '금속공사', '기계설비공사', '댐 및 제방공사', '도로 및 포장공사', '도장공사', '말뚝공사', '목공사', '미장공사', '방수공사', '산업설비공사', '수장공사', '전기설비공사', '조경공사', '조적공사', '지반개량공사', '지반조사', '지붕 및 홈통공사', '지정공사', '창호 및 유리공사', '철골공사', '철근콘크리트공사', '철도 및 궤도공사', '타일 및 돌공사', '터널공사', '토공사', '통신설비공사', '특수 건축물공사', '프리캐스트 콘크리트공사', '하천공사', '항만공사', '해체 및 철거공사', '기타']
@@ -83,4 +84,3 @@ if button_clicked:
 
     # CSV 파일 로드
     #df = pd.read_csv(csv_file_path)
-
