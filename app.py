@@ -7,6 +7,19 @@ from dateutil import parser
 
 #------------아래는 제목-----------------
 
+#바 편집
+m=0.5
+bar = st.progress(m)
+
+# 바의 색상을 설정하는 CSS 스타일
+bar_color = "#FF0000"  # 빨간색으로 변경
+
+# 바의 HTML 코드
+bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
+
+# Streamlit에 표시
+st.markdown(bar, unsafe_allow_html=True)
+
 
 #제목
 col1,empty2,col2 = st.columns([1, 0.3, 8.7])
@@ -28,25 +41,25 @@ with col2 :
     end_day = st.date_input('공사 종료일을 선택해주세요')
 
 #(2) 공사기간 계산
-#start_day = parser.parse(start_day)
-#end_day = parser.parse(end_day)
-#dur = (end_day - start_day).days
-#if (dur <= 0): st.write("공사기간 입력 오류")
-#else:
-#   df['공사기간'] = float(dur)
-#   print(df)
+start_day = parser.parse(start_day)
+end_day = parser.parse(end_day)
+dur = (end_day - start_day).days
+if (dur <= 0): st.write("공사기간 입력 오류")
+else:
+   '공사기간', float(dur)
+   print(df)
 
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     facility = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
-#if (selected_lang2 == '건축'): 
+if (selected_facility == '건축'): df['시설물 종류_건축 ']
     
 #(4) 공정률 (~%)
 with col2 :
     percent = st.text_input('공정률을 입력해주세요  (단위 : %)', value="", placeholder="65%라면 '65'라고 입력해주세요")
-#percent = float(percent)    
+percent = float(percent)    
 
 #(6),(5) 공종 (철근콘크리트~)
 with col2:
@@ -92,17 +105,7 @@ if button_clicked:
         #st.write(f"{danger[2]}")
     # Add a placeholder 진행 상황 바
 
-m=0.5
-bar = st.progress(m)
 
-# 바의 색상을 설정하는 CSS 스타일
-bar_color = "#FF0000"  # 빨간색으로 변경
-
-# 바의 HTML 코드
-bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
-
-# Streamlit에 표시
-st.markdown(bar, unsafe_allow_html=True)
 
 
 
