@@ -31,9 +31,9 @@ with col2 :
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
-    day1 = st.date_input('공사 시작일을 선택해주세요 : ')
+    day1 = st.date_input('공사 시작일을 선택해주세요')
 with col2 :
-    day2 = st.date_input('공사 종료일을 선택해주세요 : ')
+    day2 = st.date_input('공사 종료일을 선택해주세요')
 
 #col1,col2 = st.columns([2, 0.03])
 #with col1 :
@@ -45,12 +45,12 @@ with col2 :
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
-    selected_lang2 = st.selectbox('시설물종류를 선택해주세요 : ',lang2)
+    selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
     #selected_lang2 = st.selectbox('시설물종류를 선택해주세요:', facility_types)
     
 #공정률 (~%)
 with col2 :
-    st.text_input('공정률을 입력해주세요 : ')
+    st.text_input('공정률을 입력해주세요  (단위 : %)')
     
 # 공종 (철근콘크리트~)
 with col2:
@@ -59,25 +59,25 @@ with col2:
     
     filtered_lang3 = [item for item in lang3 if search_term.lower() in item.lower()]
 with col1:
-    selected_lang3 = st.selectbox('공종을 선택해주세요:', filtered_lang3)
+    selected_lang3 = st.selectbox('공종을 선택해주세요', filtered_lang3)
 
 #설계안전성검토 (대상,비대상)
 with col1 :
-    selected_item2 = st.radio("설계안전성검토를 선택해주세요 : ", ("대상", "비대상"))
+    selected_item2 = st.radio("설계안전성검토를 선택해주세요", ("대상", "비대상"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 #시설관리공사 (공공,민간)
 with col2 :
-    selected_item3 = st.radio("시설관리공사를 선택해주세요 : ", ("공공", "민간"))
+    selected_item3 = st.radio("시설관리공사를 선택해주세요", ("공공", "민간"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 #공사비 (~원)
 with col1 :
-    st.text_input('공사비를 입력해주세요 : ')
+    st.text_input('공사비를 입력해주세요  (단위 : 억 원)')
 
 #작업자수 (~명)
 with col2 :
-    st.text_input('작업자수를 입력해주세요 : ')
+    st.text_input('작업자수를 입력해주세요  (단위 : 명)')
 
 #통계페이지 이동하는 버튼
 st.write(' ')
