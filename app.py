@@ -99,7 +99,7 @@ with col2 :
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인')
 danger = ["하", "중", "상"]
-#if button_clicked:
+if button_clicked:
     #if 조건식1:
         #st.write(f"위험도는",{danger[0]},\"입니다.")
     #elif 조건식2:
@@ -108,20 +108,20 @@ danger = ["하", "중", "상"]
         #st.write(f"위험도는",{danger[2]},\"입니다.")
     
     
-# Add a placeholder 진행 상황 바
-# 전체 바의 스타일과 크기를 설정하는 CSS 스타일
-bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
+    # Add a placeholder 진행 상황 바
+    # 전체 바의 스타일과 크기를 설정하는 CSS 스타일
+    bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
-# 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-redred = 0.7  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
-red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
+    # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
+    redred = 0.7  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
+    red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
 
-# 바의 HTML 코드
-bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
+    # 바의 HTML 코드
+    bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
 
-# Streamlit에 표시
-st.markdown(bar, unsafe_allow_html=True)
+    # Streamlit에 표시
+    st.markdown(bar, unsafe_allow_html=True)
 
 
 
