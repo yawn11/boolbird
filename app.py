@@ -99,6 +99,14 @@ i=0.3
 bar = st.empty()
 bar.progress(i)
 
+# 바의 색상을 설정하는 CSS 스타일
+bar_color = "#FF0000"  # 빨간색으로 변경
+
+# 바의 HTML 코드
+bar = f'<div style="background-color: {bar_color}; height: 20px; width: 70%;"></div>'
+
+# Streamlit에 표시
+st.markdown(bar, unsafe_allow_html=True)
 
 
 
