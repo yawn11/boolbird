@@ -169,10 +169,13 @@ for item in items:
             key = '강우'
         found = True
     elif key == '' and category == "WSD": # 강풍>=9
-        wsd = int(item.find('obsrValue').text)
-        if wsd >= 9: 
-            key = '강풍'
-        found = True 
+        try:
+            wsd = int(item.find('obsrValue').text)  # 수정된 부분: 예외 처리 추가
+            if wsd >= 9: 
+                key = '강풍'
+                found = True 
+        except ValueError:  # 수정된 부분: ValueError 예외 처리
+            pass
     elif key == '' and category == "SKY": # 맑음=1, 흐림=4
         sky = int(item.find('obsrValue').text)
         if sky == 1: 
