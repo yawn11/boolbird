@@ -120,19 +120,22 @@ date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
 date = extract_yyyymmdd(date) 
 #date = 20230607
 
-# 기상청 데이터 연결
+# 기상청 데이터 연결 기상청_단기예보 ((구)_동네예보) 조회서비스
 import requests
 import json
 serviceKey = "NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2FplMo5tdutaV6kUxQ=="
 url = '	http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0'
-params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '10', 'dataType' : 'JSON', 'dataCd' : 'ASOS', 'dateCd' : 'DAY', 'startDt' : '20100101', 'endDt' : '20100601', 'stnIds' : '108' }
+params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'XML', 'base_date' : '20210628', 'base_time' : '0600', 'nx' : '55', 'ny' : '127'}
 # 기온 불러오기
 def get_temper(yyyymmdd):
-    params['startDt'] = yyyymmdd 
-    #params['endDt'] = yyyymmdd+1
-    params['endDt'] = str(int(yyyymmdd) + 1)
+    params['startDt'] = str(yyyymmdd)
+    params['endDt'] = str(yyyymmdd + 1)
     response = requests.get(url, params=params)
-    jsondata = json.loads(response.content)
+    #jsondata = json.loads(response.content)
+    try:
+        jsondata = json.loads(response.content)
+    except json.JSONDecodeError:
+        return None
 
     #for item in jsondata['response']['body']['items']['item']:
         #return float(item['avgTa'])
@@ -151,11 +154,14 @@ def get_temper(yyyymmdd):
     
 # 습도 불러오기
 def get_humid(yyyymmdd):
-    params['startDt'] = yyyymmdd 
-    #params['endDt'] = yyyymmdd+1
-    params['endDt'] = str(int(yyyymmdd) + 1)
+    params['startDt'] = str(yyyymmdd)
+    params['endDt'] = str(yyyymmdd + 1)
     response = requests.get(url, params=params)
-    jsondata = json.loads(response.content)
+    #jsondata = json.loads(response.content)
+    try:
+        jsondata = json.loads(response.content)
+    except json.JSONDecodeError:
+        return None
 
     #for item in jsondata['response']['body']['items']['item']:
         #return float(item['avgRhm'])  
