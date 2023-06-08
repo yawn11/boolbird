@@ -12,7 +12,7 @@ m=0.5
 bar = st.progress(m)
 
 # 바의 색상을 설정하는 CSS 스타일
-bar_color = "#EA3323"  # 빨간색으로 변경
+bar_color = "#ffffff"  # 빨간색으로 변경
 
 # 바의 HTML 코드
 #bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
