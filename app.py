@@ -54,7 +54,9 @@ with col1 :
     selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
 if (selected_facility == '건축'): 
     facility_row = ['시설물 종류_건축', 1.0]
-else if (selected_facility == )
+elif (selected_facility == '산업환경설비'):
+    
+
     
 #(4) 공정률 (~%)
 with col2 :
