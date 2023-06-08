@@ -104,7 +104,7 @@ button_clicked = st.button('위험도 예측 결과 확인')
 danger = ["하", "중", "상"]
 if button_clicked:
     if True:
-        st.write(f"위험도는\" {danger[0]} "\"입니다.")
+        st.write(f"위험도는\" {danger[0]} \"입니다.")
     #elif 조건식2:
         #st.write(f"위험도는", {danger[1]}, "\"입니다.")
     #elif 조건식3:
