@@ -110,25 +110,27 @@ else:
 
 # 현재 시간
 import datetime
-def extract_yyyymmdd(s):
-    date1 = s.split()[0]
-    list =  date1.split('-')
-    return int(list[0]+list[1]+list[2])
-dt_now = datetime.datetime.now()
-#date = dt_now.date #2020-09-02
-date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
-date = extract_yyyymmdd(date) 
-#date = 20230607
+# def extract_yyyymmdd(s):
+#     date1 = s.split()[0]
+#     list =  date1.split('-')
+#     return int(list[0]+list[1]+list[2])
+# dt_now = datetime.datetime.now()
+# #date = dt_now.date #2020-09-02
+# date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
+# date = extract_yyyymmdd(date) 
+date = 20230607
+time = 0700
 
 # 기상청 데이터 연결 "기상청_단기예보 ((구)_동네예보) 조회서비스"
 import requests
 import json
 serviceKey = "NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2FplMo5tdutaV6kUxQ=="
 url = '	http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0'
-params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'XML', 'base_date' : '20210628', 'base_time' : '0600', 'nx' : '55', 'ny' : '127'}
+params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : '20210628', 'base_time' : '0600', 'nx' : '55', 'ny' : '127'}
 # 기온 불러오기
-def get_temper(yyyymmdd):
-    params['base_date'] = str(yyyymmdd)
+def get_temper(date, time):
+    params['base_date'] = str(date)
+    params['base_time'] = str(time)
     response = requests.get(url, params=params)
     #jsondata = json.loads(response.content)
     try:
@@ -209,8 +211,8 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-    color100 = int(color*100)
-    st.write('상세 위험도는 \' {color100} % \' 입니다.')
+    now_color = int(color*100)
+    st.write('상세 위험도는 \' ', now_color, ' % \' 입니다.')
     st.markdown(bar, unsafe_allow_html=True)
     
     st.write(df) # <-??이거 데이터프레임 처리 잘되었나 화인용 아하
