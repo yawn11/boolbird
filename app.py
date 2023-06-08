@@ -90,8 +90,8 @@ if button_clicked:
         #st.write(f"{danger[2]}")
     # Add a placeholder 진행 상황 바
 
-#n=0.5
-#bar = st.progress(n)
+m=0.5
+bar = st.progress(m)
 
 # CSS 스타일
 custom_style = """
