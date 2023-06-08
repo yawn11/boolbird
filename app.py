@@ -76,11 +76,14 @@ with col1 :
     selected_item2 = st.radio("설계안전성검토를 선택해주세요", ("대상", "비대상"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 if (selected_item2 == "대상"):
-    df['설계안전성검토']
+    df['설계안전성검토'] = 1.0
+
 #(8) 시설관리공사 (공공,민간)
 with col2 :
     selected_item3 = st.radio("시설관리공사를 선택해주세요", ("공공", "민간"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+if (selected_item3 == "공공"):
+    df['시설관리공사'] = 1.0
 
 #(9) 공사비 (~원)
 with col1 :
@@ -100,11 +103,11 @@ button_clicked = st.button('위험도 예측 결과 확인')
 danger = ["하", "중", "상"]
 if button_clicked:
     if True:
-        st.write(f"위험도는",{danger[0]},\"입니다.")
+        st.write(f"위험도는", {danger[0]}, "\"입니다.")
     #elif 조건식2:
-        #st.write(f"위험도는",{danger[1]},\"입니다.")
+        #st.write(f"위험도는", {danger[1]}, "\"입니다.")
     #elif 조건식3:
-        #st.write(f"위험도는",{danger[2]},\"입니다.")
+        #st.write(f"위험도는", {danger[2]}, "\"입니다.")
     
     
     # Add a placeholder 진행 상황 바
