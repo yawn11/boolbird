@@ -18,6 +18,7 @@ with col2 :
 
 #------------아래는 입력 (총 10개)---------
 
+df = pd.DataFrame()
 
 #(1) 공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
@@ -27,12 +28,13 @@ with col2 :
     end_day = st.date_input('공사 종료일을 선택해주세요')
 
 #(2) 공사기간 계산
-#start_day = parser.parse(start_day)
-#end_day = parser.parse(end_day)
-#dur = (end_day - start_day).days
-#if (dur <= 0): st.write("공사기간 입력 오류")
-#else:
-#    df['공사기간'] = float(dur)
+start_day = parser.parse(start_day)
+end_day = parser.parse(end_day)
+dur = (end_day - start_day).days
+if (dur <= 0): st.write("공사기간 입력 오류")
+else:
+   df['공사기간'] = float(dur)
+   print(df)
 
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
@@ -110,8 +112,9 @@ bar = st.progress(n)
 # 커스텀 CSS 적용
 st.markdown(custom_style, unsafe_allow_html=True)
 
-
-
+i=0.3
+bar = st.empty()
+bar.progress(i)
 
 
 
