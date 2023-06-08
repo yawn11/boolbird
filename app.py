@@ -12,10 +12,10 @@ m=0.5
 bar = st.progress(m)
 
 # 바의 색상을 설정하는 CSS 스타일
-bar_color = "#FF0000"  # 빨간색으로 변경
+bar_color = "#EA3323"  # 빨간색으로 변경
 
 # 바의 HTML 코드
-bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
+#bar = f'<div style="background-color: {bar_color}; height: 10px; width: 70%;"></div>'
 
 # Streamlit에 표시
 st.markdown(bar, unsafe_allow_html=True)
@@ -45,9 +45,7 @@ start_day = parser.parse(start_day)
 end_day = parser.parse(end_day)
 dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
-else:
-   '공사기간', float(dur)
-   print(df)
+dur_row = ['공사기간', float(dur)]
 
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
