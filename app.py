@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-col1,col2 = st.columns([1,9])
+col1,empty2,col2 = st.columns([1, 0.3, 8.7])
 with col1 :
     st.image("phoenix.png", width=80)
 with col2 :
