@@ -218,5 +218,3 @@ if button_clicked:
     
     if st.checkbox('입력값 확인하기') :
         st.write(df)
-    else :
-        st.text('입력값 숨기기')
