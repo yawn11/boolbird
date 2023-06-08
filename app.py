@@ -2,9 +2,11 @@
 import streamlit as st
 import pandas as pd
 
-st.image("phoenix.png", width=100)
-
-st.title("건설 안전사고 위험도 예측 서비스\n")
+col1,empty2,col2 = st.columns([1,1,8])
+with col1 :
+    st.image("phoenix.png", width=80)
+with col2 :
+    st.title("건설 안전사고 위험도 예측 서비스\n")
 
 #def preprocess_data():
     # CSV 파일 경로
