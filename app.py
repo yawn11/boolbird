@@ -95,10 +95,6 @@ if button_clicked:
 m=0.5
 bar = st.progress(m)
 
-i=0.3
-bar = st.empty()
-bar.progress(i)
-
 # 바의 색상을 설정하는 CSS 스타일
 bar_color = "#FF0000"  # 빨간색으로 변경
 
