@@ -35,8 +35,8 @@ with col2 :
     end_day = st.date_input('공사 종료일을 선택해주세요')
 
 #(2) 공사기간 계산
-start_day = parser.parse(start_day)
-end_day = parser.parse(end_day)
+start_day = parser.parse(str(start_day))
+end_day = parser.parse(str(end_day))
 dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
 df.loc['공사기간'] = dur
