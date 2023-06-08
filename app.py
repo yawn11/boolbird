@@ -7,25 +7,6 @@ from dateutil import parser
 
 #------------아래는 제목-----------------
 
-#바 편집
-m=0.5
-bar = st.progress(m)
-
-# 전체 바의 스타일과 크기를 설정하는 CSS 스타일
-bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
-
-# 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-redred = 0.7  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
-red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
-
-# 바의 HTML 코드
-bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
-
-# Streamlit에 표시
-st.markdown(bar, unsafe_allow_html=True)
-
-
 
 #제목
 col1,empty2,col2 = st.columns([1, 0.3, 8.7])
@@ -37,7 +18,7 @@ with col2 :
 
 #------------아래는 입력 (총 10개)---------
 
-#list =
+list = ["시설물 종류_건축","시설물 종류_산업환경설비","시설물 종류_조경","시설물 종류_토목","공공/민간 구분_공공","공공/민간 구분_민간","날씨_강설","날씨_강우","날씨_강풍","날씨_맑음","날씨_안개","날씨_흐림","공종_가설공사","공종_강구조물공사","공종_건축 토공사","공종_건축물 부대공사","공종_관공사","공종_관공사 부대공사","공종_교량공사","공종_금속공사","공종_기계설비공사","공종_기타","공종_댐 및 제방공사","공종_도로 및 포장공사","공종_도장공사","공종_말뚝공사","공종_목공사","공종_미장공사","공종_방수공사","공종_산업설비공사","공종_수장공사","공종_전기설비공사","공종_조경공사","공종_조적공사","공종_지반개량공사","공종_지반조사","공종_지붕 및 홈통공사","공종_지정공사","공종_창호 및 유리공사","공종_철골공사","공종_철근콘크리트공사","공종_철도 및 궤도공사","공종_타일 및 돌공사","공종_터널공사","공종_토공사","공종_통신설비공사","공종_특수 건축물공사","공종_프리캐스트 콘크리트공사","공종_하천공사","공종_항만공사","공종_해체 및 철거공사","발생일시","공사비","공사기간","공정률","작업자수","설계안전성검토","기온","습도"]
 df = pd.DataFrame()
 
 #(1) 공사기간 (yy.mm.dd ~ yy.mm.dd)
@@ -52,21 +33,21 @@ start_day = parser.parse(start_day)
 end_day = parser.parse(end_day)
 dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
-# dur_row = ['공사기간', float(dur)]
+dur_row = ['공사기간', float(dur)]
 
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     facility = ['건축', '산업환경설비', '조경', '토목', '기타']
-    selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
-# if (selected_facility == '건축'): 
-#     facility_row = ['시설물 종류_건축', 1.0]
-# elif (selected_facility == '산업환경설비'):
-#     facility_row = ['시설물 종류_산업환경설비', 1.0]
-# elif (selected_facility == '조경'):
-#     facility_row = ['시설물 종류_조경', 1.0]
-# else:
-#     facility_row = ['시설물 종류_토목', 1.0]
+    selected_facility = st.selectbox('시설물종류를 선택해주세요',facility)
+if (selected_facility == '건축'): 
+    facility_row = ['시설물 종류_건축', 1.0]
+elif (selected_facility == '산업환경설비'):
+    facility_row = ['시설물 종류_산업환경설비', 1.0]
+elif (selected_facility == '조경'):
+    facility_row = ['시설물 종류_조경', 1.0]
+else:
+    facility_row = ['시설물 종류_토목', 1.0]
     
 #(4) 공정률 (~%)
 with col2 :
@@ -78,9 +59,9 @@ with col2:
     category = ['가설공사', '강구조물공사', '건축 토공사', '건축물 부대공사', '관공사', '관공사 부대공사', '교량공사', '금속공사', '기계설비공사', '댐 및 제방공사', '도로 및 포장공사', '도장공사', '말뚝공사', '목공사', '미장공사', '방수공사', '산업설비공사', '수장공사', '전기설비공사', '조경공사', '조적공사', '지반개량공사', '지반조사', '지붕 및 홈통공사', '지정공사', '창호 및 유리공사', '철골공사', '철근콘크리트공사', '철도 및 궤도공사', '타일 및 돌공사', '터널공사', '토공사', '통신설비공사', '특수 건축물공사', '프리캐스트 콘크리트공사', '하천공사', '항만공사', '해체 및 철거공사', '기타']
     search_term = st.text_input('공종 검색어 입력을 통해 빠르게 검색할 수 있습니다', value="", placeholder="금속공사라면 '금속'을 검색해보세요")
     
-    filtered_category = [item for item in lang3 if search_term.lower() in item.lower()]
+    filtered_category = [item for item in category if search_term.lower() in item.lower()]
 with col1:
-    selected_category = st.selectbox('공종을 선택해주세요', filtered_lang3)
+    selected_category = st.selectbox('공종을 선택해주세요', filtered_category)
 
 
 #(7) 설계안전성검토 (대상,비대상)
@@ -116,8 +97,23 @@ if button_clicked:
         #st.write(f"{danger[1]}")
     #elif 조건식3:
         #st.write(f"{danger[2]}")
+    
+    
+    
     # Add a placeholder 진행 상황 바
+    # 전체 바의 스타일과 크기를 설정하는 CSS 스타일
+    bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
+    # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
+    redred = 0.7  # 빨간색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    red_width = int(redred * 100)  # 빨간색 부분의 너비 계산
+    red_bar_style = f'background-color: #FF0000; height: 100%; width: {red_width}%;'
+
+    # 바의 HTML 코드
+    bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
+
+    # Streamlit에 표시
+    st.markdown(bar, unsafe_allow_html=True)
 
 
 
