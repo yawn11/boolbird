@@ -73,7 +73,7 @@ with col2 :
 
 #공사비 (~원)
 with col1 :
-    st.text_input('공사비를 입력해주세요  (단위 : 억 원)')
+    st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="예시: 10억 원")
 
 #작업자수 (~명)
 with col2 :
