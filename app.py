@@ -37,7 +37,7 @@ with col2 :
 
 #------------아래는 입력 (총 10개)---------
 
-list = 
+#list =
 df = pd.DataFrame()
 
 #(1) 공사기간 (yy.mm.dd ~ yy.mm.dd)
