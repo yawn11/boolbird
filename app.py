@@ -109,7 +109,7 @@ else:
 #(12, 13) 기온, 습도 -> 따로 입력X
 
 # 현재 시간
-import datetime
+# import datetime
 # def extract_yyyymmdd(s):
 #     date1 = s.split()[0]
 #     list =  date1.split('-')
@@ -119,7 +119,7 @@ import datetime
 # date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
 # date = extract_yyyymmdd(date) 
 date = 20230607
-time = 0700
+time = 700 #0700
 
 # 기상청 데이터 연결 "기상청_단기예보 ((구)_동네예보) 조회서비스"
 import requests
@@ -146,9 +146,9 @@ def get_temper(date, time):
         if 'item' in items:
             item = items['item']
             if isinstance(item, list):
-                return float(item[0]['avgTa'])
+                return float(item[0]['T1H'])
             elif isinstance(item, dict):
-                return float(item['avgTa'])
+                return float(item['T1H'])
 
     return None
     
