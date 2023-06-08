@@ -12,16 +12,16 @@ m=0.5
 bar = st.progress(m)
 
 # 전체 바의 스타일과 크기를 설정하는 CSS 스타일
-bar_style = 'background-color: #808080; height: 20px; width: 100%;'
+bar_style = 'background-color: #C0C0C0; height: 20px; width: 100%;'
 
 # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
 red_bar_style = 'background-color: #FF0000; height: 100%; width: 70%;'
 
 # 회색 부분의 스타일과 크기를 설정하는 CSS 스타일
-gray_bar_style = 'background-color: #C0C0C0; height: 100%; width: 30%;'
+#gray_bar_style = 'background-color: #C0C0C0; height: 100%; width: 30%;'
 
 # 바의 HTML 코드
-bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div><div style="{gray_bar_style}"></div></div>'
+bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
 
 # Streamlit에 표시
 st.markdown(bar, unsafe_allow_html=True)
