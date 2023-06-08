@@ -108,79 +108,82 @@ else:
 
 #(12, 13) 기온, 습도 -> 따로 입력X
 
-# 현재 시간
-# import datetime
-# def extract_yyyymmdd(s):
-#     date1 = s.split()[0]
-#     list =  date1.split('-')
-#     return int(list[0]+list[1]+list[2])
-# dt_now = datetime.datetime.now()
-# #date = dt_now.date #2020-09-02
-# date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
-# date = extract_yyyymmdd(date) 
-date = 20230607
-time = 700 #0700 이거 10진수에서는 앞에 0 쓰면 안된대서 700으로 바꿨어
-
 # 기상청 데이터 연결 "기상청_단기예보 ((구)_동네예보) 조회서비스"
 import requests
-import json
-serviceKey = "NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2FplMo5tdutaV6kUxQ=="
-url = '	http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0'
-params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '1000', 'dataType' : 'JSON', 'base_date' : '20210628', 'base_time' : '0600', 'nx' : '55', 'ny' : '127'}
-# 기온 불러오기
-def get_temper(date, time):
-    params['base_date'] = str(date)
-    params['base_time'] = str(time)
-    response = requests.get(url, params=params)
-    #jsondata = json.loads(response.content)
-    try:
-        jsondata = json.loads(response.content)
-    except json.JSONDecodeError:
-        return None
+import xml.etree.ElementTree as ET
+from datetime import datetime
 
-    #for item in jsondata['response']['body']['items']['item']:
-        #return float(item['avgTa'])
-    
-    if 'response' in jsondata and 'body' in jsondata['response'] and 'items' in jsondata['response']['body']:
-        items = jsondata['response']['body']['items']
-        if 'item' in items:
-            item = items['item']
-            if isinstance(item, list):
-                return float(item[0]['T1H'])
-            elif isinstance(item, dict):
-                return float(item['T1H'])
+# API 요청 URL
+url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
 
-    return None
-    
-    
-# 습도 불러오기
-def get_humid(date, time):
-    params['base_date'] = str(date)
-    params['base_time'] = str(time)
-    response = requests.get(url, params=params)
-    #jsondata = json.loads(response.content)
-    try:
-        jsondata = json.loads(response.content)
-    except json.JSONDecodeError:
-        return None
+# 인증키
+api_key = 'NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2FplMo5tdutaV6kUxQ=='
 
-    #for item in jsondata['response']['body']['items']['item']:
-        #return float(item['avgTa'])
-    
-    if 'response' in jsondata and 'body' in jsondata['response'] and 'items' in jsondata['response']['body']:
-        items = jsondata['response']['body']['items']
-        if 'item' in items:
-            item = items['item']
-            if isinstance(item, list):
-                return float(item[0]['REH'])
-            elif isinstance(item, dict):
-                return float(item['REH'])
+# 현재 날짜와 시간 가져오기
+now = datetime.now()
+date = now.strftime('%Y%m%d')  # 날짜 형식 변환
+time = now.strftime('%H')+'00'  # 시간 형식 변환
 
-    return None
-    
-    
-df.loc['기온'] = get_temper(date, time)
-df.loc['습도'] = get_humid(date, time)
+# # 사용자로부터 날짜와 시간 입력받기
+# date = input('날짜를 입력하세요 (예: 20230608): ')
+# time = input('시간을 입력하세요 (예: 1400): ')
+# 요청 파라미터
+params = {
+    'serviceKey': api_key,
+    'numOfRows': '10',  # 가져올 데이터 개수
+    'dataType': 'XML',  # 응답 데이터 형식
+    'base_date': date,  # 기준 날짜
+    'base_time': time,  # 기준 시간
+    'nx': '60',  # 위도
+    'ny': '127'  # 경도
+}
+
+# API 요청 보내기
+response = requests.get(url, params=params)
+xml_data = response.text
+
+# XML 파싱
+tree = ET.ElementTree(ET.fromstring(xml_data))
+root = tree.getroot()
+
+# 필요한 데이터 추출
+items = root.findall('.//item')
+
+found = False
+for item in items:
+    category = item.find('category').text
+    if category == 'T1H':  # 기온(category=T1H) 데이터 추출
+        temp = item.find('obsrValue').text
+        found = True
+    elif category == 'REH':  # 습도(category=REH) 데이터 추출
+        humidity = item.find('obsrValue').text
+        found = True
+    elif category == "PTY": # 강설=3, 강우=1
+        pty = int(item.find('obsrValue').text)
+        if pty == 3: 
+            key = '강설'
+        elif pty == 1:
+            key = '강우'
+        found = True
+    elif key == '' and category == "WSD": # 강풍>=9
+        wsd = int(item.find('obsrValue').text)
+        if wsd >= 9: 
+            key = '강풍'
+        found = True 
+    elif key == '' and category == "SKY": # 맑음=1, 흐림=4
+        sky = int(item.find('obsrValue').text)
+        if sky == 1: 
+            key = '맑음'
+        elif sky == 4:
+            key = '흐림'
+        found = True
+      
+if not found:
+    print('해당 날짜와 시간에 대한 데이터를 찾을 수 없습니다.')
+df.loc[string + key] = 1.0
+df.loc['기온'] = temp
+df.loc['습도'] = humidity
+
 
 #------------아래는 출력-----------------
 
