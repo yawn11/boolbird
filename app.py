@@ -90,7 +90,7 @@ if button_clicked:
         #st.write(f"{danger[2]}")
     # Add a placeholder 진행 상황 바
 
-n=0.7
+n=0.5
 bar = st.progress(n)
 
 #def preprocess_data():
