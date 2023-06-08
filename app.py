@@ -109,24 +109,22 @@ else:
 #(12, 13) 기온, 습도 -> 따로 입력X
 
 # 현재 시간
-# import datetime
-# def extract_yyyymmdd(s):
-#     date1 = s.split()[0]
-#     list =  date1.split('-')
-#     return int(list[0]+list[1]+list[2])
-# dt_now = datetime.datetime.now()
-# #date = dt_now.date #2020-09-02
-# date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02 근데 하나씩하면 되는뎅ㅇ
-# date = extract_yyyymmdd(date) #뭐지 왜 안될까그래서 여기문제 같아 머야한번에 주석어케함 고수다 cmd + /여태 한개씩 누르고 있었따ㅋㅋㅋㅋ앗..ㅜㅜㅜ이거 돌려 볼까
-#좋앙 근데 잘돌아가든디/??아닌 Nan 없어졌나하고 나는 nan이 뜬적이 없엇어아 그 표에서 기온 습도 부분 아 저거왜저럼/??ㅠㅠ
-# 아 내가 값없으면 None 적으라고 수정해뒀는데 근데 값이 왜없지? 뭐징 ㅜ 되나영? 안돼ㅜ계속 none으로 떠
-date = 20230607
+import datetime
+def extract_yyyymmdd(s):
+    date1 = s.split()[0]
+    list =  date1.split('-')
+    return int(list[0]+list[1]+list[2])
+dt_now = datetime.datetime.now()
+#date = dt_now.date #2020-09-02
+date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
+date = extract_yyyymmdd(date) 
+#date = 20230607
 
 # 기상청 데이터 연결
 import requests
 import json
-serviceKey = "Fr9wFe/lwpNUNCFDyb4c74NiogVnhbSPOn4VixALepK1XaBViv2tOKOjrbTArthJoToqj0KuLzn4w4TVj/AqJQ=="
-url = 'http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList'
+serviceKey = "NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2FplMo5tdutaV6kUxQ=="
+url = '	http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0'
 params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '10', 'dataType' : 'JSON', 'dataCd' : 'ASOS', 'dateCd' : 'DAY', 'startDt' : '20100101', 'endDt' : '20100601', 'stnIds' : '108' }
 # 기온 불러오기
 def get_temper(yyyymmdd):
