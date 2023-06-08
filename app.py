@@ -118,7 +118,8 @@ else:
 # #date = dt_now.date #2020-09-02
 # date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02 근데 하나씩하면 되는뎅ㅇ
 # date = extract_yyyymmdd(date) #뭐지 왜 안될까그래서 여기문제 같아 머야한번에 주석어케함 고수다 cmd + /여태 한개씩 누르고 있었따ㅋㅋㅋㅋ앗..ㅜㅜㅜ이거 돌려 볼까
-#좋앙 근데 잘돌아가든디/??
+#좋앙 근데 잘돌아가든디/??아닌 Nan 없어졌나하고 나는 nan이 뜬적이 없엇어아 그 표에서 기온 습도 부분 아 저거왜저럼/??ㅠㅠ
+# 아 내가 값없으면 None 적으라고 수정해뒀는데 근데 값이 왜없지? 뭐징 ㅜ 되나영?
 date = 20230607
 
 # 기상청 데이터 연결
@@ -205,7 +206,7 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-    st.write('상세 위험도는 아래와 같습니다.')
+    st.write('상세 위험도는 \' { color } % \' 입니다.')
     st.markdown(bar, unsafe_allow_html=True)
     
     st.write(df) # <-??
