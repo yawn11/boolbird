@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-st.image("phoenix.png", use_column_width=100)
+st.image("phoenix.png", use_column_width=10)
 
 st.title("건설 안전사고 위험도 예측 서비스\n")
 
