@@ -211,7 +211,8 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
-    st.write('상세 위험도는 \' ', int(color*100), ' % \' 입니다.')
+    new_color = int(color*100)
+    st.write("상세 위험도는 \' {color} % \' 입니다.")
     st.markdown(bar, unsafe_allow_html=True)
     
     st.write(df)
