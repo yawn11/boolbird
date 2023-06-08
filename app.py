@@ -16,7 +16,7 @@ bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
 # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
 redred = 30
-red_bar_style = 'background-color: #FF0000; height: 100%; width: redred%;'
+red_bar_style = 'background-color: #FF0000; height: 100%; width: {redred}%;'
 
 # 바의 HTML 코드
 bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
