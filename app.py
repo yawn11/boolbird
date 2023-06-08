@@ -87,12 +87,13 @@ if (selected_item3 == "공공"):
 
 #(9) 공사비 (~원)
 with col1 :
-    st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
+    cost = st.text_input('공사비를 입력해주세요 (단위: 억 원)', value="", placeholder="10억 원이라면 '10'이라고 입력해주세요")
+df['공사비'] = cost
 
 #(10) 작업자수 (~명)
 with col2 :
-    st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
-
+    person = st.text_input('작업자수를 입력해주세요  (단위 : 명)', value="", placeholder="1,000명이라면 '1000'이라고 입력해주세요")
+df['작업자수'] = person
 
 #------------아래는 출력-----------------
 
@@ -103,7 +104,7 @@ button_clicked = st.button('위험도 예측 결과 확인')
 danger = ["하", "중", "상"]
 if button_clicked:
     if True:
-        st.write(f"위험도는", {danger[0]}, "\"입니다.")
+        st.write(f"위험도는\" {danger[0]} "\"입니다.")
     #elif 조건식2:
         #st.write(f"위험도는", {danger[1]}, "\"입니다.")
     #elif 조건식3:
