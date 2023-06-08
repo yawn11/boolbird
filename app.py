@@ -115,6 +115,7 @@ def extract_yyyymmdd(s):
     list =  date1.split('-')
     return int(list[0]+list[1]+list[2])
 dt_now = datetime.datetime.now()
+#date = dt_now.date #2020-09-02
 date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
 date = extract_yyyymmdd(date)
 
@@ -127,7 +128,8 @@ params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '10', 'dataTyp
 # 기온 불러오기
 def get_temper(yyyymmdd):
     params['startDt'] = yyyymmdd 
-    params['endDt'] = yyyymmdd+1
+    #params['endDt'] = yyyymmdd+1
+    params['endDt'] = str(int(yyyymmdd) + 1)
     response = requests.get(url, params=params)
     jsondata = json.loads(response.content)
 
@@ -136,7 +138,8 @@ def get_temper(yyyymmdd):
 # 습도 불러오기
 def get_humid(yyyymmdd):
     params['startDt'] = yyyymmdd 
-    params['endDt'] = yyyymmdd+1
+    #params['endDt'] = yyyymmdd+1
+    params['endDt'] = str(int(yyyymmdd) + 1)
     response = requests.get(url, params=params)
     jsondata = json.loads(response.content)
 
