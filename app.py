@@ -30,8 +30,7 @@ col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     lang2 = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_lang2 = st.selectbox('시설물종류를 선택해주세요',lang2)
-if (selected_lang2 == '건축'): 
-    ' '
+#if (selected_lang2 == '건축'): 
     
 #공정률 (~%)
 with col2 :
