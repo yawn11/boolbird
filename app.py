@@ -15,10 +15,7 @@ bar = st.progress(m)
 bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
 # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-red_bar_style = 'background-color: #FF0000; height: 100%; width: 70%;'
-
-# 회색 부분의 스타일과 크기를 설정하는 CSS 스타일
-#gray_bar_style = 'background-color: #C0C0C0; height: 100%; width: 30%;'
+red_bar_style = 'background-color: #FF0000; height: 100%; width: {m * 100}%;'
 
 # 바의 HTML 코드
 bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
@@ -78,9 +75,10 @@ with col2:
     category = ['가설공사', '강구조물공사', '건축 토공사', '건축물 부대공사', '관공사', '관공사 부대공사', '교량공사', '금속공사', '기계설비공사', '댐 및 제방공사', '도로 및 포장공사', '도장공사', '말뚝공사', '목공사', '미장공사', '방수공사', '산업설비공사', '수장공사', '전기설비공사', '조경공사', '조적공사', '지반개량공사', '지반조사', '지붕 및 홈통공사', '지정공사', '창호 및 유리공사', '철골공사', '철근콘크리트공사', '철도 및 궤도공사', '타일 및 돌공사', '터널공사', '토공사', '통신설비공사', '특수 건축물공사', '프리캐스트 콘크리트공사', '하천공사', '항만공사', '해체 및 철거공사', '기타']
     search_term = st.text_input('공종 검색어 입력을 통해 빠르게 검색할 수 있습니다', value="", placeholder="금속공사라면 '금속'을 검색해보세요")
     
-    filtered_lang3 = [item for item in lang3 if search_term.lower() in item.lower()]
+    filtered_category = [item for item in lang3 if search_term.lower() in item.lower()]
 with col1:
-    selected_lang3 = st.selectbox('공종을 선택해주세요', filtered_lang3)
+    selected_category = st.selectbox('공종을 선택해주세요', filtered_lang3)
+
 
 #(7) 설계안전성검토 (대상,비대상)
 with col1 :
