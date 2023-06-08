@@ -15,7 +15,8 @@ bar = st.progress(m)
 bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
 
 # 빨간색 부분의 스타일과 크기를 설정하는 CSS 스타일
-red_bar_style = 'background-color: #FF0000; height: 100%; width: {m * 100}%;'
+redred = 30
+red_bar_style = 'background-color: #FF0000; height: 100%; width: redred%;'
 
 # 바의 HTML 코드
 bar = f'<div style="{bar_style}"><div style="{red_bar_style}"></div></div>'
@@ -49,21 +50,21 @@ start_day = parser.parse(start_day)
 end_day = parser.parse(end_day)
 dur = (end_day - start_day).days
 if (dur <= 0): st.write("공사기간 입력 오류")
-dur_row = ['공사기간', float(dur)]
+# dur_row = ['공사기간', float(dur)]
 
 #(3) 시설물종류 (건축~)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     facility = ['건축', '산업환경설비', '조경', '토목', '기타']
     selected_facility = st.selectbox('시설물종류를 선택해주세요',lang2)
-if (selected_facility == '건축'): 
-    facility_row = ['시설물 종류_건축', 1.0]
-elif (selected_facility == '산업환경설비'):
-    facility_row = ['시설물 종류_산업환경설비', 1.0]
-elif (selected_facility == '조경'):
-    facility_row = ['시설물 종류_조경', 1.0]
-else:
-    facility_row = ['시설물 종류_토목', 1.0]
+# if (selected_facility == '건축'): 
+#     facility_row = ['시설물 종류_건축', 1.0]
+# elif (selected_facility == '산업환경설비'):
+#     facility_row = ['시설물 종류_산업환경설비', 1.0]
+# elif (selected_facility == '조경'):
+#     facility_row = ['시설물 종류_조경', 1.0]
+# else:
+#     facility_row = ['시설물 종류_토목', 1.0]
     
 #(4) 공정률 (~%)
 with col2 :
