@@ -214,7 +214,7 @@ if button_clicked:
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
     new_color = int(color*100)
-    st.write("상세 위험도는 \' {new_color} % \' 입니다.")
+    st.write(f"상세 위험도는 \' {new_color} % \' 입니다.")
     st.markdown(bar, unsafe_allow_html=True)
     
     st.write(df)
