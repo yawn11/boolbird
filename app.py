@@ -12,6 +12,7 @@ with col2 :
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
     day1 = st.date_input('공사 시작일을 선택해주세요')
+    st.write(day1)
 with col2 :
     day2 = st.date_input('공사 종료일을 선택해주세요')
 
@@ -55,12 +56,19 @@ with col2 :
 #통계페이지 이동하는 버튼
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인')
+danger = ["하", "중", "상"]
 if button_clicked:
-    st.write("짜잔")
+    if 조건식1:
+        st.write(f"짜잔{danger[0]}")
+    elif 조건식2:
+        st.write(f"짜잔{danger[1]}")
+    elif 조건식3:
+        st.write(f"짜잔{danger[2]}")
 
-def preprocess_data():
+#def preprocess_data():
     # CSV 파일 경로
-    csv_file_path = 'output/output-v2.csv'
+    #csv_file_path = 'output/output-v2.csv'
 
     # CSV 파일 로드
-    df = pd.read_csv(csv_file_path)
+    #df = pd.read_csv(csv_file_path)
+
