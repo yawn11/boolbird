@@ -13,9 +13,6 @@ with col2 :
 #공사기간 (yy.mm.dd ~ yy.mm.dd)
 col1,empty2,col2 = st.columns([1, 0.03, 1])
 with col1 :
-    col1.markdown(
-    f'<style>div.stColumn:nth-of-type(1) {{background-color: blue;}}</style>',
-    unsafe_allow_html=True)
     start_day = st.date_input('공사 시작일을 선택해주세요')
 with col2 :
     end_day = st.date_input('공사 종료일을 선택해주세요')
