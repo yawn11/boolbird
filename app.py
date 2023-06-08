@@ -107,15 +107,17 @@ else:
 #우리 기온,습도랑 같이 날씨 입력 받을수없나??아 그거 찾아봐야해 아까 뭐 써본거 있다고 했는데 물어봐야겠다! 오 카이~
 
 #(12, 13) 기온, 습도 -> 따로 입력X
-#현재 시간
-def extract_yyyymmdd(s):
-    date = s.split()[0]
-    list =  date.split('-')
-    return int(list[0]+list[1]+list[2])
+
+# 현재 시간
 import datetime
+def extract_yyyymmdd(s):
+    date1 = s.split()[0]
+    list =  date1.split('-')
+    return int(list[0]+list[1]+list[2])
 dt_now = datetime.datetime.now()
-date = dt_now.date #2020-09-02
+date = dt_now.date().strftime('%Y-%m-%d') #2020-09-02
 date = extract_yyyymmdd(date)
+
 # 기상청 데이터 연결
 import requests
 import json
@@ -141,8 +143,8 @@ def get_humid(yyyymmdd):
     for item in jsondata['response']['body']['items']['item']:
         return float(item['avgRhm'])  
     
-df.loc['기온'] = get_temper()
-df.loc['습도'] = get_humid()
+df.loc['기온'] = get_temper(date)
+df.loc['습도'] = get_humid(date)
 
 #------------아래는 출력-----------------
 
