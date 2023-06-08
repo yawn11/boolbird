@@ -198,7 +198,7 @@ button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 �
 danger = ["하", "중", "상"]
 if button_clicked:
     bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
-    color = 0.3  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
     color_width = int(color * 100)  # 색 부분의 너비 계산
     if True:
         st.title(f"위험도는 \' {danger[0]} \' 입니다.")
