@@ -106,13 +106,18 @@ else:
 weather = ["강설","강풍","강우","안개","맑음","흐림"]
 
 #(12, 13) 기온, 습도 -> 따로 입력X
+#현재 시간
+import datetime
+dt_now = datetime.datetime.now()
+date = dt_now.date #2020-09-02
+da
+# 기상청 데이터 연결
 import requests
 import json
-
 serviceKey = "Fr9wFe/lwpNUNCFDyb4c74NiogVnhbSPOn4VixALepK1XaBViv2tOKOjrbTArthJoToqj0KuLzn4w4TVj/AqJQ=="
 url = 'http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList'
 params ={'serviceKey' : serviceKey, 'pageNo' : '1', 'numOfRows' : '10', 'dataType' : 'JSON', 'dataCd' : 'ASOS', 'dateCd' : 'DAY', 'startDt' : '20100101', 'endDt' : '20100601', 'stnIds' : '108' }
-
+# 기온 불러오기
 def get_temper(yyyymmdd):
     params['startDt'] = yyyymmdd 
     params['endDt'] = yyyymmdd+1
@@ -121,7 +126,7 @@ def get_temper(yyyymmdd):
 
     for item in jsondata['response']['body']['items']['item']:
         return float(item['avgTa'])  
-    
+# 습도 불러오기
 def get_humid(yyyymmdd):
     params['startDt'] = yyyymmdd 
     params['endDt'] = yyyymmdd+1
@@ -132,11 +137,9 @@ def get_humid(yyyymmdd):
         return float(item['avgRhm'])  
     
 df.loc['기온'] = get_temper()
-df.loc['습도'] = get
+df.loc['습도'] = get_humid()
 
 #------------아래는 출력-----------------
-
-st.write(df)
 
 #통계페이지 이동하는 버튼
 st.write(' ')
@@ -181,7 +184,10 @@ if button_clicked:
         #st.markdown(bar, unsafe_allow_html=True)
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
+    st.write('상세 위험도는 아래와 같습니다.')
     st.markdown(bar, unsafe_allow_html=True)
+    
+    st.write(df)
 
 
 
