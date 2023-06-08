@@ -131,7 +131,8 @@ def get_humid(yyyymmdd):
     for item in jsondata['response']['body']['items']['item']:
         return float(item['avgRhm'])  
     
-df.loc['기온'] = 
+df.loc['기온'] = get_temper()
+df.loc['습도'] = get
 
 #------------아래는 출력-----------------
 
