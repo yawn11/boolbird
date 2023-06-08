@@ -2,9 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title("건설 안전사고 위험도 예측 서비스")
-st.write('아래 정보를 입력해주세요')
-st.title(" ")
+st.title("건설 안전사고 위험도 예측 서비스\n")
 
 #def preprocess_data():
     # CSV 파일 경로
