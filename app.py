@@ -103,8 +103,11 @@ else:
     df.loc['작업자수'] = None
 
 #(11) 날씨 -> 입력
-#weather = ["강설","강풍","강우","안개","맑음","흐림"]
-#우리 기온,습도랑 같이 날씨 입력 받을수없나??아 그거 찾아봐야해 아까 뭐 써본거 있다고 했는데 물어봐야겠다! 오 카이~
+import requests
+import xml.etree.ElementTree as ET
+from datetime import datetime
+string = '날씨_'
+key = ''
 
 #(12, 13) 기온, 습도 -> 따로 입력X
 
