@@ -103,11 +103,11 @@ else:
     df.loc['작업자수'] = None
 
 #(11) 날씨 -> 입력
-import requests
-import xml.etree.ElementTree as ET
-from datetime import datetime
-string = '날씨_'
-key = ''
+# import requests
+# import xml.etree.ElementTree as ET
+# from datetime import datetime
+# string = '날씨_'
+# key = ''
 
 #(12, 13) 기온, 습도 -> 따로 입력X
 
@@ -154,6 +154,7 @@ items = root.findall('.//item')
 
 found = False
 
+string = '날씨_'
 key = ''  # key 변수 초기화
 
 for item in items:
