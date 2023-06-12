@@ -12,11 +12,11 @@ button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 �
 danger = ["하", "중", "상"]
 if button_clicked:
     color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-    color_width = int(color * 100)  # 색 부분의 너비 계산
+    color_width = int(color * 25)  # 색 부분의 너비 계산
     if True:
         st.title(f"위험도는 '{danger[0]}' 입니다.")
-        color_bar_style = f'background-color: #89BF6C; height: 8px; width: {color_width*25}%; display: inline-block;'
-        green_bar_style = f'background-color: #E4F4CF; height: 8px; width: {(100-color_width)*25}%; display: inline-block;'
+        color_bar_style = f'background-color: #89BF6C; height: 8px; width: {color_width}%; display: inline-block;'
+        green_bar_style = f'background-color: #E4F4CF; height: 8px; width: {25-color_width}%; display: inline-block;'
         yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: 25%; display: inline-block;'
         red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 50%; display: inline-block;'
         st.markdown(
