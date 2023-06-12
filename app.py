@@ -29,7 +29,14 @@ if button_clicked:
     
     bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
     st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
-    st.markdown(bar, unsafe_allow_html=True)
+    st.markdown(
+            f"""
+            <div style="{bar_style}">
+                <div style="{color_bar_style}"></div>
+                <div style="{green_bar_style}"></div>
+            </div>
+            """,
+            unsafe_allow_html=True)
     
 
 
@@ -41,7 +48,7 @@ with col2 :
     st.title("건설 안전사고 위험도 예측 서비스\n")
 
 
-#------------아래는 입력 (총 10개)---------
+#------------아래는 입력 (총 13개)---------
 
 list = ["시설물 종류_건축","시설물 종류_산업환경설비","시설물 종류_조경","시설물 종류_토목",
         "공공/민간 구분_공공","공공/민간 구분_민간",
@@ -204,8 +211,6 @@ for item in items:
         if wsd >= 9: 
             key = '강풍'
         found = True
-        
-    
       
 if not found:
     print('해당 날짜와 시간에 대한 데이터를 찾을 수 없습니다.')
@@ -213,7 +218,13 @@ df.loc[string + key] = 1.0
 df.loc['기온'] = temp
 df.loc['습도'] = humidity
 
-print(df)
+#------------아래는 분석-----------------
+
+# predict/predict.py에 있는 predict(input_data)함수에 input_data 넣으면 class와 상세 위험도 리턴
+# import sys
+# sys.path.append('..')
+# from predict.predict import *
+# predict(df)
 
 #------------아래는 출력-----------------
 
