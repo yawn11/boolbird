@@ -79,10 +79,14 @@ if (selected_item2 == "대상"):
 
 #(8) 시설관리공사 (공공,민간)
 with col2 :
-    selected_item3 = st.radio("시설관리공사를 선택해주세요.", ("공공", "민간"))
+    selected_company = st.radio("시설관리공사를 선택해주세요.", ("공공", "민간"))
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-if (selected_item3 == "공공"):
-    df.loc['시설관리공사'] = 1.0
+if selected_company == "공공":
+    df.loc['공공/민간 구분_공공'] = 1.0
+    df.loc['공공/민간 구분_민간'] = 0.0
+else:
+    df.loc['공공/민간 구분_공공'] = 0.0
+    df.loc['공공/민간 구분_민간'] = 1.0
 
 #(9) 공사비 (~원)
 with col1 :
@@ -153,6 +157,8 @@ items = root.findall('.//item')
 
 found = False
 
+temp=0
+humidity=0
 for item in items:
     category = item.find('category').text
     if category == 'T1H':  # 기온(category=T1H) 데이터 추출
