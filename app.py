@@ -24,7 +24,7 @@ if button_clicked:
             f'<div style="{color_bar_style}"></div><div style="{green_bar_style}"></div><div style="{yellow_bar_style}"></div><div style="{red_bar_style}"></div>',
             unsafe_allow_html=True)
     
-    elif True:
+    elif False:
         st.title(f"위험도는 '{danger[1]}' 입니다.")
         color_width = int(color * 25)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #F0BD6A; height: 8px; width: 25%; display: inline-block;'
@@ -36,16 +36,16 @@ if button_clicked:
             f'<div style="{green_bar_style}"></div><div style="{color_bar_style}"></div><div style="{yellow_bar_style}"></div><div style="{red_bar_style}"></div>',
             unsafe_allow_html=True)
     
-    elif False:
+    elif True:
         st.title(f"위험도는 '{danger[2]}' 입니다.")
-        color_width = int(color * 25)  # 색 부분의 너비 계산
-        green_bar_style = f'background-color: #89BF6C; height: 8px; width: 25%; display: inline-block;'
-        color_bar_style = f'background-color: #F0BD6A; height: 8px; width: {color_width}%; display: inline-block;'
-        yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: {25-color_width}%; display: inline-block;'
-        red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 50%; display: inline-block;'
+        color_width = int(color * 50)  # 색 부분의 너비 계산
+        green_bar_style = f'background-color: #DD5E65; height: 8px; width: 25%; display: inline-block;'
+        yellow_bar_style = f'background-color: #DD5E65; height: 8px; width: 25%; display: inline-block;'
+        color_bar_style = f'background-color: #DD5E65; height: 8px; width: {color_width}%; display: inline-block;'
+        red_bar_style = f'background-color: #F2D0CD; height: 8px; width: {50-color_width}%; display: inline-block;'
         st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
         st.markdown(
-            f'<div style="{green_bar_style}"></div><div style="{color_bar_style}"></div><div style="{yellow_bar_style}"></div><div style="{red_bar_style}"></div>',
+            f'<div style="{green_bar_style}"></div><div style="{yellow_bar_style}"></div><div style="{color_bar_style}"></div><div style="{red_bar_style}"></div>',
             unsafe_allow_html=True)
     
 
@@ -234,7 +234,7 @@ df.loc['습도'] = humidity
 # import sys
 # sys.path.append('..')
 # from predict.predict import *
-# predicted_class, detail_risk  = predict(df) # predicted_class=, detail_risk
+# predicted_class, detail_risk  = predict(df) # return value는 predicted_class={상: 2, 중: 1, 하: 0}, detail_risk = numpy.float64입니당
 
 #------------아래는 출력-----------------
 
