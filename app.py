@@ -7,6 +7,30 @@ from dateutil import parser
 
 #------------아래는 제목-----------------
 
+st.write(' ')
+button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 이동하는 버튼
+danger = ["하", "중", "상"]
+if button_clicked:
+    bar_style = 'background-color: #F0F2F6; height: 8px; width: 100%;'
+    color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    color_width = int(color * 25)  # 색 부분의 너비 계산
+    if True:
+        st.title(f"위험도는 \' {danger[0]} \' 입니다.")
+        color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
+    
+    elif False:
+        st.title(f"위험도는 \' {danger[1]} \' 입니다.")
+        color_bar_style = f'background-color: #F0BD6A; height: 100%; width: {color_width}%;'
+    
+    elif False:
+        st.title(f"위험도는 \' {danger[2]} \' 입니다.")
+        color_bar_style = f'background-color: #DD5E65; height: 100%; width: {color_width}%;'
+    
+    bar = f'<div style="{bar_style}"><div style="{color_bar_style}"></div></div>'
+    st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
+    st.markdown(bar, unsafe_allow_html=True)
+    
+
 
 #제목
 col1,empty2,col2 = st.columns([1, 0.3, 8.7])
@@ -102,19 +126,14 @@ if person:
 else:
     df.loc['작업자수'] = None
 
-#(11) 날씨 -> 입력
-# import requests
-# import xml.etree.ElementTree as ET
-# from datetime import datetime
-# string = '날씨_'
-# key = ''
-
-#(12, 13) 기온, 습도 -> 따로 입력X
+#(11, 12, 13) 날씨, 기온, 습도 -> 따로 입력X
 
 # 기상청 데이터 연결 "기상청_단기예보 ((구)_동네예보) 조회서비스"
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
+string = '날씨_'
+key = '맑음'
 
 # API 요청 URL
 url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
@@ -125,11 +144,12 @@ api_key = 'NminqLTNuSX5OFbyRamiOBFhuUBormib7/IeKYFKpWn1iXnxa1PEQ5IZAfJWebf8nOOb2
 # 현재 날짜와 시간 가져오기
 now = datetime.now()
 date = now.strftime('%Y%m%d')  # 날짜 형식 변환
-time = now.strftime('%H')+'00'  # 시간 형식 변환
+time = now.strftime('%H')+'00' # 시간 형식 변환  --> 여기서 오류, 10분 미만일 때 API 못불러옴
 
 # # 사용자로부터 날짜와 시간 입력받기
 # date = input('날짜를 입력하세요 (예: 20230608): ')
 # time = input('시간을 입력하세요 (예: 1400): ')
+
 # 요청 파라미터
 params = {
     'serviceKey': api_key,
@@ -143,6 +163,9 @@ params = {
 
 # API 요청 보내기
 response = requests.get(url, params=params)
+if (response.status_code != 200):
+    params['base_time'] = '0000'
+    response = requests.get(url, params=params)
 xml_data = response.text
 
 # XML 파싱
@@ -154,9 +177,6 @@ items = root.findall('.//item')
 
 found = False
 
-string = '날씨_'
-key = ''  # key 변수 초기화
-
 for item in items:
     category = item.find('category').text
     if category == 'T1H':  # 기온(category=T1H) 데이터 추출
@@ -165,28 +185,26 @@ for item in items:
     elif category == 'REH':  # 습도(category=REH) 데이터 추출
         humidity = item.find('obsrValue').text
         found = True
-    elif category == "PTY": # 강설=3, 강우=1
-        pty = int(item.find('obsrValue').text)
-        if pty == 3: 
-            key = '강설'
-        elif pty == 1:
-            key = '강우'
-        found = True
-    elif key == '' and category == "WSD": # 강풍>=9
-        try:
-            wsd = int(item.find('obsrValue').text)  # 수정된 부분: 예외 처리 추가
-            if wsd >= 9: 
-                key = '강풍'
-                found = True 
-        except ValueError:  # 수정된 부분: ValueError 예외 처리
-            pass
-    elif key == '' and category == "SKY": # 맑음=1, 흐림=4
-        sky = int(item.find('obsrValue').text)
-        if sky == 1: 
-            key = '맑음'
-        elif sky == 4:
+    elif category == "SKY": # 맑음=1, 흐림=4
+        sky = item.find('obsrValue').text
+        if sky == '4':
             key = '흐림'
         found = True
+    elif category == "PTY": # 강설=3, 강우=1
+        pty = item.find('obsrValue').text
+        if pty == '3': 
+            key = '강설'
+        elif pty == '1':
+            key = '강우'
+        found = True
+    elif category == "WSD": # 강풍>=9
+        wsd = item.find('obsrValue').text 
+        wsd = int(float(ws))
+        if wsd >= 9: 
+            key = '강풍'
+        found = True
+        
+    
       
 if not found:
     print('해당 날짜와 시간에 대한 데이터를 찾을 수 없습니다.')
@@ -194,6 +212,7 @@ df.loc[string + key] = 1.0
 df.loc['기온'] = temp
 df.loc['습도'] = humidity
 
+print(df)
 
 #------------아래는 출력-----------------
 
