@@ -1,11 +1,7 @@
 import sys
 sys.path.append('..')
 
-#import lightgbm as lgb
-import os
-os.environ['PATH'] += ':/usr/local/bin'
 import lightgbm as lgb
-
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
