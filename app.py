@@ -255,7 +255,7 @@ if button_clicked:
         red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 5%; display: inline-block;'
     
     elif predicted_class==2:
-        st.title(f"위험도는 \'하\' 입니다.")
+        st.title(f"위험도는 \'상\' 입니다.")
         color = color/2
         color_width = int(color * 90)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #89BF6C; height: 8px; width: 5%; display: inline-block;'
