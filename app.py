@@ -175,7 +175,7 @@ for item in items:
         found = True
     elif category == "WSD": # 강풍>=9
         wsd = item.find('obsrValue').text 
-        wsd = int(float(ws))
+        wsd = int(float(wsd))
         if wsd >= 9: 
             key = '강풍'
         found = True
@@ -192,7 +192,8 @@ df.loc['습도'] = humidity
 # import sys
 # sys.path.append('..')
 # from predict.predict import *
-# predicted_class, detail_risk  = predict(df) # return value는 predicted_class={상: 2, 중: 1, 하: 0}, detail_risk = numpy.float64입니당
+# predicted_class, detail_risk  = predict(df)
+# return value는 predicted_class={상: 2, 중: 1, 하: 0}, detail_risk = numpy.float64입니당
 
 #------------아래는 출력-----------------
 
