@@ -196,9 +196,12 @@ df.loc['습도'] = humidity
 # return value는 predicted_class={상: 2, 중: 1, 하: 0}, detail_risk = numpy.float64입니당
 
 
-import sys
-sys.path.append('..')
-from model.models import LGBMmodel, LGBMmodel_classification
+#import sys
+#sys.path.append('..')
+#from model.models import LGBMmodel, LGBMmodel_classification
+
+from models import LGBMmodel, LGBMmodel_classification
+from predict import *
 import numpy as np
 
 # Model Training
@@ -233,6 +236,7 @@ def predict(input_data):
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 이동하는 버튼
 if button_clicked:
+    predicted_class, detail_risk = predict(df)
     color = detail_risk  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
     if predicted_class==0:
         st.title(f"위험도는 \'하\' 입니다.")
@@ -251,7 +255,7 @@ if button_clicked:
         red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 5%; display: inline-block;'
     
     elif predicted_class==2:
-        st.title(f"위험도는 \'상\' 입니다.")
+        st.title(f"위험도는 \'하\' 입니다.")
         color = color/2
         color_width = int(color * 90)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #89BF6C; height: 8px; width: 5%; display: inline-block;'
