@@ -195,31 +195,63 @@ df.loc['습도'] = humidity
 # predicted_class, detail_risk  = predict(df)
 # return value는 predicted_class={상: 2, 중: 1, 하: 0}, detail_risk = numpy.float64입니당
 
+
+import sys
+sys.path.append('..')
+from model.models import LGBMmodel, LGBMmodel_classification
+import numpy as np
+
+# Model Training
+bst_classification = LGBMmodel_classification()
+bst_regression_high = LGBMmodel('high')
+bst_regression_mid = LGBMmodel('mid')
+bst_regression_low = LGBMmodel('low')
+
+# Predicting
+def predict(input_data): 
+    # Classification
+    class_proba = bst_classification.predict(input_data)
+    predicted_class = np.argmax(class_proba, axis=1)  # 상: 2, 중: 1, 하: 0
+    detail_risk = 0
+
+    # Regression
+    if predicted_class == 2:  # 상
+        dmg_scale = bst_regression_high.predict(input_data)
+        detail_risk = (np.expm1(dmg_scale) - 1) * 100
+    elif predicted_class == 1:  # 중
+        dmg_scale = bst_regression_mid.predict(input_data)
+        detail_risk = (np.expm1(dmg_scale) - 0.5) * 100 * 2
+    else:  # 하
+        dmg_scale = bst_regression_low.predict(input_data)
+        detail_risk = (np.expm1(dmg_scale)) * 100 * 2
+
+    return predicted_class, detail_risk
+
+
 #------------아래는 출력-----------------
 
 st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 이동하는 버튼
-danger = ["하", "중", "상"]
 if button_clicked:
-    color = 0.3  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-    if False:
-        st.title(f"위험도는 '{danger[0]}' 입니다.")
+    color = detail_risk  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    if predicted_class==0:
+        st.title(f"위험도는 \'하\' 입니다.")
         color_width = int(color * 90)  # 색 부분의 너비 계산
         color_bar_style = f'background-color: #89BF6C; height: 8px; width: {color_width}%; display: inline-block;'
         green_bar_style = f'background-color: #E4F4CF; height: 8px; width: {90-color_width}%; display: inline-block;'
         yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: 5%; display: inline-block;'
         red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 5%; display: inline-block;'
     
-    elif False:
-        st.title(f"위험도는 '{danger[1]}' 입니다.")
+    elif predicted_class==1:
+        st.title(f"위험도는 \'중\' 입니다.")
         color_width = int(color * 90)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #89BF6C; height: 8px; width: 5%; display: inline-block;'
         color_bar_style = f'background-color: #F0BD6A; height: 8px; width: {color_width}%; display: inline-block;'
         yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: {90-color_width}%; display: inline-block;'
         red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 5%; display: inline-block;'
     
-    elif True:
-        st.title(f"위험도는 '{danger[2]}' 입니다.")
+    elif predicted_class==2:
+        st.title(f"위험도는 \'상\' 입니다.")
         color = color/2
         color_width = int(color * 90)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #89BF6C; height: 8px; width: 5%; display: inline-block;'
