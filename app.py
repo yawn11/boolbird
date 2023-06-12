@@ -19,7 +19,7 @@ if button_clicked:
         color_bar_style = f'background-color: #89BF6C; height: 8px; width: {color_width}%; display: inline-block;'
         green_bar_style = f'background-color: #E4F4CF; height: 8px; width: {100-color_width}%; display: inline-block;'
         st.markdown(
-            f'<div style="{bar_style}"><div style="{color_bar_style}"></div><div style="{green_bar_style}"></div></div>',
+            f'<div style="{color_bar_style}"></div><div style="{green_bar_style}"></div>',
             unsafe_allow_html=True
         )
     
