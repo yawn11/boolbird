@@ -1,8 +1,6 @@
 import sys
 sys.path.append('..')
 
-import sys
-sys.path.append('/usr/local/lib/python3.X/site-packages')
 import lightgbm as lgb
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
