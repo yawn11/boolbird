@@ -17,6 +17,7 @@ if button_clicked:
     if True:
         st.title(f"위험도는 \' {danger[0]} \' 입니다.")
         color_bar_style = f'background-color: #89BF6C; height: 100%; width: {color_width}%;'
+        green_bar_style = f'background-color: #E4F4CF; height: 100%; width: {100-color_width}%;'
     
     elif False:
         st.title(f"위험도는 \' {danger[1]} \' 입니다.")
