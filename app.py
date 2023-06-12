@@ -11,8 +11,8 @@ st.write(' ')
 button_clicked = st.button('위험도 예측 결과 확인') #통계페이지 이동하는 버튼
 danger = ["하", "중", "상"]
 if button_clicked:
-    color = 0.7  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
-    if True:
+    color = 0.5  # 색 부분의 비율 (0.0 ~ 1.0 사이의 값)
+    if False:
         st.title(f"위험도는 '{danger[0]}' 입니다.")
         color_width = int(color * 95)  # 색 부분의 너비 계산
         color_bar_style = f'background-color: #89BF6C; height: 8px; width: {color_width}%; display: inline-block;'
@@ -23,13 +23,13 @@ if button_clicked:
             f'<div style="{color_bar_style}"></div><div style="{green_bar_style}"></div><div style="{yellow_bar_style}"></div>',
             unsafe_allow_html=True)
     
-    elif False:
+    elif True:
         st.title(f"위험도는 '{danger[1]}' 입니다.")
-        color_width = int(color * 25)  # 색 부분의 너비 계산
-        green_bar_style = f'background-color: #F0BD6A; height: 8px; width: 25%; display: inline-block;'
+        color_width = int(color * 90)  # 색 부분의 너비 계산
+        green_bar_style = f'background-color: #89BF6C; height: 8px; width: 5%; display: inline-block;'
         color_bar_style = f'background-color: #F0BD6A; height: 8px; width: {color_width}%; display: inline-block;'
-        yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: {25-color_width}%; display: inline-block;'
-        red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 50%; display: inline-block;'
+        yellow_bar_style = f'background-color: #FDEDD0; height: 8px; width: {90-color_width}%; display: inline-block;'
+        red_bar_style = f'background-color: #F2D0CD; height: 8px; width: 5%; display: inline-block;'
         st.write(f"상세 위험도는 \' {int(color*100)} % \' 입니다.")
         st.markdown(
             f'<div style="{green_bar_style}"></div><div style="{color_bar_style}"></div><div style="{yellow_bar_style}"></div><div style="{red_bar_style}"></div>',
