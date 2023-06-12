@@ -25,7 +25,7 @@ if button_clicked:
             unsafe_allow_html=True)
     
     elif True:
-        st.title(f"위험도는 '{danger[0]}' 입니다.")
+        st.title(f"위험도는 '{danger[1]}' 입니다.")
         color_width = int(color * 25)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #F0BD6A; height: 8px; width: 25%; display: inline-block;'
         color_bar_style = f'background-color: #F0BD6A; height: 8px; width: {color_width}%; display: inline-block;'
@@ -37,7 +37,7 @@ if button_clicked:
             unsafe_allow_html=True)
     
     elif False:
-        st.title(f"위험도는 '{danger[0]}' 입니다.")
+        st.title(f"위험도는 '{danger[2]}' 입니다.")
         color_width = int(color * 25)  # 색 부분의 너비 계산
         green_bar_style = f'background-color: #89BF6C; height: 8px; width: 25%; display: inline-block;'
         color_bar_style = f'background-color: #F0BD6A; height: 8px; width: {color_width}%; display: inline-block;'
@@ -234,7 +234,7 @@ df.loc['습도'] = humidity
 # import sys
 # sys.path.append('..')
 # from predict.predict import *
-# predicted_class, detail_risk  = predict(df)
+# predicted_class, detail_risk  = predict(df) # predicted_class=, detail_risk
 
 #------------아래는 출력-----------------
 
